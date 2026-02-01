@@ -25,6 +25,27 @@ h6 {
   font-family: "Poppins";
 }
 
+
+/* === Hover Highlight Card (Swiper) === */
+.highlight-card {
+    transition: all 0.3s ease;
+    border: 4px solid transparent;
+    border-radius: 15px;
+}
+
+.highlight-card:hover {
+    border-color: #2182b6; 
+    box-shadow: 0 20px 50px rgba(13, 110, 253, 0.25);
+    transform: translateY(-5px);
+}
+
+.highlight-card:hover {
+    cursor: pointer;
+}
+
+
+
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/

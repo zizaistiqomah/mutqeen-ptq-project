@@ -1,8 +1,8 @@
 <header id="header" class="d-flex align-items-center">
     <div class="w-100 d-flex align-items-center justify-content-center">
 
-        <a href={{ route('home') }} class="logo"><img src="/assets/img/logo_ukm.png" alt="" class="img-fluid"></a>
-        <h1 class="logo me-5"><a href={{ route('home') }}>UKM Tahfidz Qur'an<br>Universitas Airlangga</a></h1>
+        <a href={{ route('home') }} class="logo"><img src="/assets/img/Logo-PTQ.png" alt="" class="img-fluid"></a>
+        <h1 class="logo me-5"><a href={{ route('home') }}>Mutqeen<br>Pusat Tahfidz Al-Qur'an</a></h1>
 
         <nav id="navbar" class="navbar">
             <div class="mx-5">
@@ -25,31 +25,25 @@
                                 <li class="w-full">
                                     <a href="{{ route('departemen.tahfidz') }}"
                                         class="block px-4 py-2 !text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                        Departemen Kelas Tahfidz
+                                        Departemen Tahfidz
                                     </a>
                                 </li>
                                 <li class="w-full">
                                     <a href="{{ route('departemen.munaqosyah') }}"
                                         class="block px-4 py-2 !text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                        Departemen Munaqosyah
+                                        Departemen PSDM
                                     </a>
                                 </li>
                                 <li class="w-full">
                                     <a href="{{ route('departemen.ukhuwah') }}"
                                         class="block px-4 py-2 !text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                        Departemen Ukhuwah
+                                        Departemen Pendidikan
                                     </a>
                                 </li>
                                 <li class="w-full">
                                     <a href="{{ route('departemen.mudarosah') }}"
                                         class="block px-4 py-2 !text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                        Departemen Mudarosah
-                                    </a>
-                                </li>
-                                <li class="w-full">
-                                    <a href="{{ route('departemen.syiar') }}"
-                                        class="block px-4 py-2 !text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                        Departemen Syiar
+                                        Departemen Humas
                                     </a>
                                 </li>
                             </ul>
@@ -57,10 +51,10 @@
                         </div>
                     </li>
                     <li><a class="nav-link scrollto {{ Route::currentRouteName() == 'program.tahfidz' ? 'active' : '' }}"
-                            href="{{ route('program.tahfidz') }}">Program Tahfidz</a></li>
+                            href="#tahfidz">Program Tahfidz</a></li>
 
                     <li><a class="nav-link scrollto {{ Route::currentRouteName() == 'publikasi' ? 'active' : '' }}"
-                            href={{route('publikasi')}}>Publikasi</a></li>
+                            href={{route('publikasi')}}>PTQ Event</a></li>
                     <li><a class="nav-link scrollto {{ Route::currentRouteName() == 'pengumuman' ? 'active' : '' }}"
                             href="#pengumuman">Pengumuman</a></li>
 

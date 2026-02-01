@@ -34,3 +34,36 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('landing.index');
 })->name('home');
+
+
+
+Route::get('/departemen-mudarosah', function () {
+    return view('landing.departemen_mudarosah');
+})->name('departemen.mudarosah');
+
+Route::get('/departemen-munaqosyah', function () {
+    return view('landing.departemen_munaqosyah');
+})->name('departemen.munaqosyah');
+
+Route::get('/departemen-syiar', function () {
+    return view('landing.departemen_syiar');
+})->name('departemen.syiar');
+
+Route::get('/departemen-tahfidz', function () {
+    return view('landing.departemen_tahfidz');
+})->name('departemen.tahfidz');
+
+Route::get('/departemen-ukhuwah', function () {
+    return view('landing.departemen_ukhuwah');
+})->name('departemen.ukhuwah');
+
+Route::get('/publikasi', function () {
+    return view('landing.publikasi');
+})->name('publikasi');
+
+Route::get('/program-tahfidz', function () {
+    return view('landing.tahfidz');
+})->name('program.tahfidz');
+
+
+require_once __DIR__ . '/auth.php';

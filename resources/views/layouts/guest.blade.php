@@ -7,7 +7,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>UKM Tahfidz Qur'an Universitas Airlangga</title>
+    <title>Pusat Tahfidz Al-Qur'an Universitas Brawijaya</title>
 
     <meta content="" name="description">
     <meta content="" name="keywords">
