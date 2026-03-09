@@ -29,19 +29,19 @@
                                     </a>
                                 </li>
                                 <li class="w-full">
-                                    <a href="{{ route('departemen.munaqosyah') }}"
+                                    <a href="{{ route('departemen.psdm') }}"
                                         class="block px-4 py-2 !text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                         Departemen PSDM
                                     </a>
                                 </li>
                                 <li class="w-full">
-                                    <a href="{{ route('departemen.ukhuwah') }}"
+                                    <a href="{{ route('departemen.pendidikan') }}"
                                         class="block px-4 py-2 !text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                         Departemen Pendidikan
                                     </a>
                                 </li>
                                 <li class="w-full">
-                                    <a href="{{ route('departemen.mudarosah') }}"
+                                    <a href="{{ route('departemen.humas') }}"
                                         class="block px-4 py-2 !text-start hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                         Departemen Humas
                                     </a>
@@ -54,9 +54,9 @@
                             href="#tahfidz">Program Tahfidz</a></li>
 
                     <li><a class="nav-link scrollto {{ Route::currentRouteName() == 'publikasi' ? 'active' : '' }}"
-                            href={{route('publikasi')}}>PTQ Event</a></li>
+                            href={{route('semua-program')}}>Semua Program</a></li>
                     <li><a class="nav-link scrollto {{ Route::currentRouteName() == 'pengumuman' ? 'active' : '' }}"
-                            href="#pengumuman">Pengumuman</a></li>
+                            href={{route('pengumuman')}}>Pengumuman</a></li>
 
                 </ul>
             </div>

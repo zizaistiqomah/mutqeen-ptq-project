@@ -7,7 +7,7 @@
                     <div class="mt-5 pt-5">
                         <h1>Pusat Tahfidz Al-Qur'an<br>Universitas Brawijaya</h1>
                         <h2>Membumikan Al-Qur'an Membangun Peradaban</h2>
-                        <a class="btn scrollto" href="tahfidz.html">Lihat Program</a>
+                        <a class="btn scrollto" href={{ route('semua-program') }}>Lihat Program</a>
                     </div>
                 </div>
                 <div class="col-5">
@@ -35,7 +35,7 @@
                                 <img src="assets/img/circle.png" class="img-fluid" alt="">
                             </div>
                             <div class="image-bottom">
-                                <img src="assets/img/profil.png" class="img-fluid" alt="">
+                                <img src="assets/img/profile.jpg" class="img-fluid" alt="">
                             </div>
                         </div>
                     </div>
@@ -47,8 +47,10 @@
                         </div>
 
                         <div class="mb-2">
-                            <p>///Menjadi wadah yang kondusif untuk menjaga dan menambah hafalan Al-Quran mahasiswa
-                                Universitas Brawijaya menuju generasi Qurani yang beriman dan bertakwa kepada Allah SWT
+                            <p>Pusat Tahfidz Al-Qur'an didirikan untuk memfasilitasi dan membimbing para civitas akademika
+                                Universitas Brawijaya maupun umum dalam menghafal Al-Qur'an. Pusat Tahfidz Al-Qur'an didirikan
+                                dengan harapan dapat menjadi pusat pembinaan karakter yang berlandaskan nilai-nilai Al-Qur'an,
+                                mencetak generasi Qur'ani, berakhlak mulia dan bermanfaat bagi umat. 
                             </p>
                         </div>
                         <a class="btn scrollto" href="#visimisi" onclick="showVisi()">Pelajari Lebih Lanjut</a>
@@ -73,20 +75,19 @@
                         <div class="section-title pb-0">
                             <h3>Visi</h3>
                         </div>
-                        <p>Menjadi wadah yang kondusif untuk menjaga dan menambah hafalan Al-Quran mahasiswa Universitas
-                            Airlangga menuju generasi Qurani yang beriman dan bertakwa kepada Allah SWT.</p>
+                        <p>Membangkitkan insan yang hamilul Qur'an lafdzan wa ma'nan melalui spirit, 
+                            intelektualitas, spiritualitas, dan moralitas dengan menghidupkan nilai Al-Qur'an dalam sikap, 
+                            perilaku, dan berpikir. 
+                        </p>
                     </div>
                     <div class="content">
                         <div class="section-title pb-0">
                             <h3>Misi</h3>
                         </div>
-                        <p>1. Mengembangkan potensi mahasiswa Universitas Airlangga di bidang Al-Quran <br>
-                            2. Mengoptimalkan silaturahim mahasiswa penghafal Al-Quran Universitas Airlangga <br>
-                            3. Mewujudkan kepengurusan yang harmonis dan amanah dengan suasana kekeluargaan <br>
-                            4. Menyelenggarakan kegiatan syiar Al-Quran di Universitas Airlangga <br>
-                            5. Meningkatkan wawasan dan kecintaan mahasiswa Universitas Airlangga terhadap Al-Quran <br>
-                            6. Menyelenggarakan kegiatan untuk muroja'ah, setoran, ujian, dan khataman Al-Quran secara
-                            terstruktur dan istiqomah di kampus A, B, dan C Universitas Airlangga</p>
+                        <p>1. Membangun dan mengembangkan PTQ UB sebagai wadah bagi mahasiswa maupun umum dalam proses menghafal, 
+                            memahami, dan memngamalkan Al-Qur'an yang berintegritas, lesatari, dan sejahtera. <br>
+                            2. Membangun atmosfer Qur'ani di lingkungan Universitas Brawijaya. Membangun dan mewadahi pusat data 
+                            para penghafal Al-Qur'an dari mahasiswa Universitas Brawijaya. <br>
                     </div>
                 </div>
 
@@ -125,9 +126,25 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Departemen Tahfidz</h5>
                                     <p class="card-text">
-                                        Departemen inti yang mengelola setoran dan hafalan santri.
+                                        Departemen inti yang berfokus pada pembinaan dan pengelolaan program hafalan Al-Qur’an bagi mahasiswa melalui kegiatan halaqah, setoran hafalan, dan pendampingan tahfidz.
                                     </p>
-                                    <a href="#" class="btn btn-primary">Detail</a>
+                                    <break></break>
+                                    <p class="card-title">
+                                        Program Kerja:
+                                    </p>
+                                    <p class="card-text">
+                                       • Halaqah tahfidz setoran hafalan 
+                                    </p>
+                                    <p class="card-text">
+                                       • Khotmil Qur'an
+                                    </p>
+                                    <p class="card-text">
+                                       • Tasmi' dan Evaluasi Hafalan
+                                    </p>
+                                    <p class="card-text">
+                                       • Wisuda Tahfidz
+                                    </p>
+                                    <a href={{route('departemen.tahfidz')}} class="btn btn-primary">Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -139,9 +156,25 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Departemen PSDM</h5>
                                     <p class="card-text">
-                                        Mengelola pengembangan sumber daya manusia santri dan pengurus.
+                                        Berfokus pada pengembangan kualitas anggota melalui pembinaan, pelatihan, dan evaluasi untuk meningkatkan kompetensi, kedisiplinan, dan profesionalisme.
                                     </p>
-                                    <a href="#" class="btn btn-primary">Detail</a>
+                                    <break></break>
+                                    <p class="card-title">
+                                        Program Kerja:
+                                    </p>
+                                    <p class="card-text">
+                                       • Recruitment 
+                                    </p>
+                                    <p class="card-text">
+                                       • Ta'ziz & Mabit
+                                    </p>
+                                    <p class="card-text">
+                                       • Rihlah
+                                    </p>
+                                    <p class="card-text">
+                                       • Studi Banding
+                                    </p>
+                                    <a href={{route('departemen.psdm')}} class="btn btn-primary">Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -153,9 +186,22 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Departemen Pendidikan</h5>
                                     <p class="card-text">
-                                        Bertanggung jawab pada publikasi, media, dan dokumentasi.
+                                        Berfokus pada pengelolaan dan pelaksanaan kegiatan edukatif untuk meningkatkan wawasan, pengetahuan, dan kualitas keilmuan pengurus dan anggota melalui kajian dan pembinaan.
                                     </p>
-                                    <a href="#" class="btn btn-primary">Detail</a>
+                                    <break></break>
+                                    <p class="card-title">
+                                        Program Kerja:
+                                    </p>
+                                    <p class="card-text">
+                                       • Kelas Tahsin
+                                    </p>
+                                    <p class="card-text">
+                                       • Baca Tulis Al-Qur'an (BTA)
+                                    </p>
+                                    <p class="card-text">
+                                       • Seminar Qurani
+                                    </p>
+                                    <a href={{route('departemen.pendidikan')}} class="btn btn-primary">Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -167,9 +213,22 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Departemen Humas</h5>
                                     <p class="card-text">
-                                        Menangani kegiatan, event, dan program tahfidz.
+                                        Berperan sebagai penghubung antara organisasi dengan pihak internal maupun eksternal melalui pengelolaan komunikasi, informasi, dan publikasi untuk membangun citra serta menjalin kerja sama yang baik.
                                     </p>
-                                    <a href="#" class="btn btn-primary">Detail</a>
+                                    <break></break>
+                                    <p class="card-title">
+                                        Program Kerja:
+                                    </p>
+                                    <p class="card-text">
+                                       • Pengelolaan Sosial Media 
+                                    </p>
+                                    <p class="card-text">
+                                       • Media Partner & Public Relation
+                                    </p>
+                                    <p class="card-text">
+                                       • Manajemen Informasi Internal 
+                                    </p>
+                                    <a href={{route('departemen.humas')}} class="btn btn-primary">Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -207,114 +266,42 @@
                                     <h2>Halaqah Tahfidz</h2>
                                 </div>
                                 <!-- Dua gambar sejajar -->
-                                <div class="row justify-content-center mb-3">
-                                    <div class="col-5 text-center">
+                                <div class="row mb-3">
+                                    <div class="col-5 text-start">
                                         <img 
-                                            src="{{ asset('assets/img/Logo-MRP.png') }}" 
+                                            src="{{ asset('assets/img/tahfidz.png') }}" 
                                             class="img-fluid"
-                                            style="max-width: 120px;"
+                                            style="max-width: 170px;"
                                             alt="Logo 1">
-                                    </div>
-                                    <div class="col-5 text-center">
-                                        <img 
-                                            src="{{ asset('assets/img/Logo-PTQ.png') }}" 
-                                            class="img-fluid"
-                                            style="max-width: 120px;"
-                                            alt="Logo 2">
                                     </div>
                                 </div>
                                 <p class="card-text">
-                                    Kelas Tahfidz merupakan departemen yang bertanggungjawab pada
-                                    kegiatan inti dari UKM Tahfidzul Quran UNAIR yaitu melakukan setoran hafalan
+                                    Kegiatan harian rutin pembinaan hafalan Al-Qur’an melalui muroja’ah, setoran hafalan, dan tasmi’, dilaksanakan dalam kelompok kecil.
                                 </p>
-                                <a class="btn" href="departemen_tahfidz.html">Pelajari Lebih Lanjut</a>
+                                <a class="btn" href={{route('semua-program')}}>Pelajari Lebih Lanjut</a>
                             </div>
                         </div>
-                        <div class="card swiper-slide highlight-card">
-                            <div class="card-body">
-                                <div class="departemen-title">
-                                    <h2>Baca Tulis Al-Qur'an</h2>
-                                </div>
-                                <!-- Dua gambar sejajar -->
-                                <div class="row justify-content-center mb-3">
-                                    <div class="col-5 text-center">
-                                        <img 
-                                            src="{{ asset('assets/img/Logo-MRP.png') }}" 
-                                            class="img-fluid"
-                                            style="max-width: 120px;"
-                                            alt="Logo 1">
-                                    </div>
-                                    <div class="col-5 text-center">
-                                        <img 
-                                            src="{{ asset('assets/img/Logo-PTQ.png') }}" 
-                                            class="img-fluid"
-                                            style="max-width: 120px;"
-                                            alt="Logo 2">
-                                    </div>
-                                </div>
-                                <p class="card-text">
-                                    Kelas Tahfidz merupakan departemen yang bertanggungjawab pada
-                                    kegiatan inti dari UKM Tahfidzul Quran UNAIR yaitu melakukan setoran hafalan
-                                </p>
-                                <a class="btn" href="departemen_tahfidz.html">Pelajari Lebih Lanjut</a>
-                            </div>
-                        </div>
-                        <div class="card swiper-slide highlight-card">
-                            <div class="card-body">
-                                <div class="departemen-title">
-                                    <h2>Rihlah</h2>
-                                </div>
-                                <!-- Dua gambar sejajar -->
-                                <div class="row justify-content-center mb-3">
-                                    <div class="col-5 text-center">
-                                        <img 
-                                            src="{{ asset('assets/img/Logo-MRP.png') }}" 
-                                            class="img-fluid"
-                                            style="max-width: 120px;"
-                                            alt="Logo 1">
-                                    </div>
-                                    <div class="col-5 text-center">
-                                        <img 
-                                            src="{{ asset('assets/img/Logo-PTQ.png') }}" 
-                                            class="img-fluid"
-                                            style="max-width: 120px;"
-                                            alt="Logo 2">
-                                    </div>
-                                </div>
-                                <p class="card-text">
-                                    Kelas Tahfidz merupakan departemen yang bertanggungjawab pada
-                                    kegiatan inti dari UKM Tahfidzul Quran UNAIR yaitu melakukan setoran hafalan
-                                </p>
-                                <a class="btn" href="departemen_tahfidz.html">Pelajari Lebih Lanjut</a>
-                            </div>
-                        </div>
+                        
                         <div class="card swiper-slide highlight-card">
                             <div class="card-body">
                                 <div class="departemen-title">
                                     <h2>Tahfidz Camp</h2>
                                 </div>
                                 <!-- Dua gambar sejajar -->
-                                <div class="row justify-content-center mb-3">
-                                    <div class="col-5 text-center">
+                                <div class="row mb-3">
+                                    <div class="col-5 text-start">
                                         <img 
-                                            src="{{ asset('assets/img/Logo-MRP.png') }}" 
+                                            src="{{ asset('assets/img/Tahfidzcamp.png') }}" 
                                             class="img-fluid"
-                                            style="max-width: 120px;"
+                                            style="max-width: 200px;"
                                             alt="Logo 1">
-                                    </div>
-                                    <div class="col-5 text-center">
-                                        <img 
-                                            src="{{ asset('assets/img/Logo-PTQ.png') }}" 
-                                            class="img-fluid"
-                                            style="max-width: 120px;"
-                                            alt="Logo 2">
                                     </div>
                                 </div>
                                 <p class="card-text">
-                                    Kelas Tahfidz merupakan departemen yang bertanggungjawab pada
-                                    kegiatan inti dari UKM Tahfidzul Quran UNAIR yaitu melakukan setoran hafalan
+                                    kegiatan karantina tahfidz selama 7 hari, yang diisi dengan fokus menghafal Al-Qur’an 
+                                    disertai kegiatan kajian dan hiburan untuk menjaga semangat peserta.
                                 </p>
-                                <a class="btn" href="departemen_tahfidz.html">Pelajari Lebih Lanjut</a>
+                                <a class="btn" href={{route('semua-program')}}>Pelajari Lebih Lanjut</a>
                             </div>
                         </div>
                         <div class="card swiper-slide highlight-card">
@@ -323,27 +310,20 @@
                                     <h2>Wisuda Tahfidz</h2>
                                 </div>
                                 <!-- Dua gambar sejajar -->
-                                <div class="row justify-content-center mb-3">
-                                    <div class="col-5 text-center">
+                                <div class="row mb-3">
+                                    <div class="col-5 text-start">
                                         <img 
-                                            src="{{ asset('assets/img/Logo-MRP.png') }}" 
+                                            src="{{ asset('assets/img/wisuda.png') }}" 
                                             class="img-fluid"
-                                            style="max-width: 120px;"
+                                            style="max-width: 200px;"
                                             alt="Logo 1">
-                                    </div>
-                                    <div class="col-5 text-center">
-                                        <img 
-                                            src="{{ asset('assets/img/Logo-PTQ.png') }}" 
-                                            class="img-fluid"
-                                            style="max-width: 120px;"
-                                            alt="Logo 2">
                                     </div>
                                 </div>
                                 <p class="card-text">
-                                    Kelas Tahfidz merupakan departemen yang bertanggungjawab pada
-                                    kegiatan inti dari UKM Tahfidzul Quran UNAIR yaitu melakukan setoran hafalan
+                                    Apresiasi dan pengukuhan bagi peserta yang telah mencapai target hafalan Al-Qur’an 
+                                    sebagai bentuk penghargaan atas pencapaian dan komitmen dalam program tahfidz.
                                 </p>
-                                <a class="btn" href="departemen_tahfidz.html">Pelajari Lebih Lanjut</a>
+                                <a class="btn" href={{route('semua-program')}}>Pelajari Lebih Lanjut</a>
                             </div>
                         </div>
                         <div class="card swiper-slide highlight-card">
@@ -352,27 +332,65 @@
                                     <h2>Studi Banding</h2>
                                 </div>
                                 <!-- Dua gambar sejajar -->
-                                <div class="row justify-content-center mb-3">
-                                    <div class="col-5 text-center">
+                                <div class="row mb-3">
+                                    <div class="col-5 text-start">
                                         <img 
-                                            src="{{ asset('assets/img/Logo-MRP.png') }}" 
+                                            src="{{ asset('assets/img/studybanding.png') }}" 
                                             class="img-fluid"
-                                            style="max-width: 120px;"
+                                            style="max-width: 170px;"
                                             alt="Logo 1">
-                                    </div>
-                                    <div class="col-5 text-center">
-                                        <img 
-                                            src="{{ asset('assets/img/Logo-PTQ.png') }}" 
-                                            class="img-fluid"
-                                            style="max-width: 120px;"
-                                            alt="Logo 2">
                                     </div>
                                 </div>
                                 <p class="card-text">
-                                    Kelas Tahfidz merupakan departemen yang bertanggungjawab pada
-                                    kegiatan inti dari UKM Tahfidzul Quran UNAIR yaitu melakukan setoran hafalan
+                                    kegiatan kunjungan dan pertukaran wawasan dengan lembaga atau organisasi sejenis 
+                                    untuk berbagi pengalaman dan meningkatkan kualitas program.
                                 </p>
-                                <a class="btn" href="departemen_tahfidz.html">Pelajari Lebih Lanjut</a>
+                                <a class="btn" href={{route('semua-program')}}>Pelajari Lebih Lanjut</a>
+                            </div>
+                        </div>
+                        <div class="card swiper-slide highlight-card">
+                            <div class="card-body">
+                                <div class="departemen-title">
+                                    <h2>Rihlah</h2>
+                                </div>
+                                <!-- Dua gambar sejajar -->
+                                <div class="row mb-3">
+                                    <div class="col-5 text-start">
+                                        <img 
+                                            src="{{ asset('assets/img/rihlah.png') }}" 
+                                            class="img-fluid"
+                                            style="max-width: 170px;"
+                                            alt="Logo 1">
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    kegiatan rekreasi dan kebersamaan yang bertujuan mempererat ukhuwah, menyegarkan semangat, 
+                                    serta memperkuat kekompakan antar pengurus dan anggota.
+                                </p>
+                                <a class="btn" href={{route('semua-program')}}>Pelajari Lebih Lanjut</a>
+                            </div>
+                        </div>
+                        <div class="card swiper-slide highlight-card">
+                            <div class="card-body">
+                                <div class="departemen-title">
+                                    <h2>Baca Tulis Al-Qur'an</h2>
+                                </div>
+                                <!-- Dua gambar sejajar -->
+                                <div class="row mb-3">
+                                    <div class="col-5 text-start">
+                                        <img 
+                                            src="{{ asset('assets/img/bta.jpg') }}" 
+                                            class="img-fluid"
+                                            style="max-width: 200px;"
+                                            alt="Logo 1">
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    Berfokus pada pengelolaan dan pelaksanaan kegiatan edukatif untuk meningkatkan wawasan, pengetahuan, 
+                                    dan kualitas keilmuan pengurus dan anggota melalui kajian dan pembinaan.
+
+                                </p>
+                                <a class="btn" href={{route('semua-program')}}>Pelajari Lebih Lanjut</a>
                             </div>
                         </div>
                     </div>
@@ -396,9 +414,9 @@
                                 <h2>Pusat Tahfidz <br>Al-Qur'an</h2>
                             </div>
                             <div class="pe-5">
-                                <p>///Berisikan mengenai beberapa berita terkait kegiatan kegiatan yang ada di Pusat Tahfidz Al-Qur-an Universitas Brawijaya yang dapat digunakan sebagai bahan bacaan</p>
+                                <p>Berisikan mengenai pengumuman terkait kegiatan kegiatan yang sedang atau akan berlangsung di Pusat Tahfidz Al-Qur-an Universitas Brawijaya yang dapat digunakan sebagai bahan bacaan</p>
                             </div>
-                            <a class="btn scrollto" href="#pengumuman">Cek Pengumuman</a>
+                            <a class="btn scrollto" href={{route('pengumuman')}}>Cek Pengumuman</a>
                         </div>
                         <div class="col-5">
                             <img src="assets/img/pengumuman.png" alt="" class="img-fluid">
