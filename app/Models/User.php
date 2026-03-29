@@ -12,14 +12,13 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'role_id',
         'name',
         'email',
         'password',
-        'phone',
-        'jenis_kelamin',
-        'tanggal_lahir',
+        'role'
     ];
+
+
 
     protected $hidden = [
         'password',
@@ -31,29 +30,22 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
 
-    public function admin()
-    {
-        return $this->hasOne(Admin::class);
-    }
-
-    public function santri()
+    
+        public function santri()
     {
         return $this->hasOne(Santri::class);
     }
 
-    public function penguji()
+    public function pengurus()
     {
-        return $this->hasOne(Penguji::class);
+        return $this->hasOne(Pengurus::class);
     }
 
-    public function panitia()
+    public function penyimak()
     {
-        return $this->hasOne(Panitia::class);
+        return $this->hasOne(Penyimak::class);
     }
+
 
 }

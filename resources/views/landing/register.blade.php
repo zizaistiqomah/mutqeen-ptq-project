@@ -9,7 +9,7 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <link href="{{ asset('assets/img/logo_ukm.png') }}" rel="icon">
+  <link href="{{ asset('assets/img/Logo-PTQ.png') }}" rel="icon">
 
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
@@ -30,7 +30,7 @@
     <div class="w-100 d-flex align-items-center justify-content-center">
 
           <a href="index.html" class="logo"><img src="assets/img/logo_ukm.png" alt="" class="img-fluid"></a>
-          <h1 class="logo me-5"><a href="index.html">UKM Tahfidz Qur'an<br>Universitas Airlangga</a></h1>
+          <h1 class="logo me-5"><a href="index.html">Pusat Tahfidz Al-Qur'an<br>Universitas Brawijaya</a></h1>
 
         <nav id="navbar" class="navbar">
           <div class="mx-5">
@@ -60,11 +60,11 @@
           <div class="modal-body">
 
             <div class="text-center">
-              <h2>Login ke UKM Tahfidz</h2>
+              <h2>Login ke PTQ</h2>
               <h3>Saya ingin masuk sebagai:</h3>
             </div>
 
-              <a href="login.html">
+              <a href="{{ route('santri.create') }}">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -78,7 +78,7 @@
                   </div>
                 </div>
               </a>
-              <a href="login.html">
+              <a href="{{ route('panitia.create') }}">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -86,27 +86,14 @@
                     </div>
                     <div class="col-9 my-auto">
                       <div class="card-body">
-                        <h3 class="card-title">Admin UKM Tahfidz</h3>
+                        <h3 class="card-title">Admin Pengurus Tahfidz</h3>
                       </div>
                     </div>
                   </div>
                 </div>
               </a>
-              <a href="login.html">
-                <div class="card mb-2">
-                  <div class="row">
-                    <div class="col-3">
-                      <img src="assets/img/panitia.png" alt="...">
-                    </div>
-                    <div class="col-9 my-auto">
-                      <div class="card-body">
-                        <h3 class="card-title">Panitia UKM Tahfidz</h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="login.html">
+              
+              <a href="{{ route('penguji.create') }}">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -114,7 +101,7 @@
                     </div>
                     <div class="col-9 my-auto">
                       <div class="card-body">
-                        <h3 class="card-title">Penguji UKM Tahfidz</h3>
+                        <h3 class="card-title">Penyimak Tahfidz</h3>
                       </div>
                     </div>
                   </div>
@@ -183,7 +170,7 @@
       </div>
       <div class="mb-4">
         <input type="checkbox" class="form-check-input" id="privacyPolicy">
-        <label for="privacyPolicy" class="form-label">Saya menyatakan memahami dan setuju dengan <a href="index.html">Kebijakan Privasi registrasi akun Santri UKM Tahfidz Universitas Airlangga</a></label>
+        <label for="privacyPolicy" class="form-label">Saya menyatakan memahami dan setuju dengan <a href="index.html">Kebijakan Privasi registrasi akun Santri Tahfidz PTQ Universitas Brawijaya</a></label>
       </div>
 
       <div class="mb-2 pb-4 border-bottom">

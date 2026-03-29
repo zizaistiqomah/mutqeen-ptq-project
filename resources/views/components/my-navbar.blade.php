@@ -107,11 +107,10 @@
                             </x-dropdown>
                         </div>
                     @else
-                        <li><button data-bs-toggle="modal" data-bs-target="#modalRegister"
-                                class="register scrollto">Register</button></li>
-                        <li><button class="login" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button>
-                        </li>
+                        <li><a class="register" href="{{ route('register.role') }}">Register</a></li>
+                        <li><a class="login" href="/login">Login</a></li>
                     @endif
+                    
                 </ul>
             </div>
             <i class="bi bi-list mobile-nav-toggle"></i>

@@ -91,8 +91,7 @@
                 <div class="mb-4">
                     <input type="checkbox" class="form-check-input" id="privacyPolicy">
                     <label for="privacyPolicy" class="form-label">Saya menyatakan memahami dan setuju dengan <a
-                            href="index.html">Kebijakan Privasi registrasi akun Santri UKM Tahfidz Universitas
-                            Airlangga</a></label>
+                            href="index.html">Kebijakan Privasi registrasi akun Santri Tahfidz PTQ Universitas Brawijaya</a></label>
                 </div>
 
                 <div class="mb-2 pb-4 border-bottom">

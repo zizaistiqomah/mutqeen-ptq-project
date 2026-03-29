@@ -12,7 +12,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <link href="{{ asset('assets/img/logo_ukm.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/Logo-PTQ.png') }}" rel="icon">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 

@@ -5,16 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Santri extends Model
+class Penyimak extends Model
 {
-    protected $table = 'santris';
-
     protected $fillable = [
         'user_id',
-        'nim',
-        'no_hp',
-        'fakultas',
-        'jurusan'
+        'no_hp'
     ];
 
     public function user()

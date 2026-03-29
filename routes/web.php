@@ -1,23 +1,11 @@
 <?php
 
-use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\Authentication\PanitiaRegisterController;
-use App\Http\Controllers\Authentication\PengujiRegisterController;
-use App\Http\Controllers\Authentication\SantriRegisterController;
-use App\Http\Controllers\PanitiaDashboardController;
-use App\Http\Controllers\PengujiDashboardController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SantriController;
-use App\Http\Controllers\Setoran\SantriVerifiedSetoranController;
-use App\Http\Controllers\Setoran\SetoranController;
-use App\Http\Controllers\Ujian\SantriVerifiedUjianController;
-use App\Http\Controllers\Ujian\UjianController;
-use App\Models\SantriVerifiedSetoran;
-use App\Models\SantriVerifiedUjian;
-use App\Models\Setoran;
-use App\Models\Ujian;
+use App\Http\Controllers\SantriRegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SantriRegisterControllerController;
+use App\Http\Controllers\Auth\LoginController;
+
 
 
 /*
@@ -66,4 +54,54 @@ Route::get('/pengumuman', function () {
 })->name('pengumuman');
 
 
-require_once __DIR__ . '/auth.php';
+
+
+Route::get('/register', function () {
+    return view('landing.register');
+})->name('register');
+
+Route::get('/register/santri', function () {
+    return view('auth.register-santri');
+})->name('register.santri');
+
+Route::get('/register/penyimak', function () {
+    return view('auth.register-penyimak');
+})->name('register.penyimak');
+
+Route::get('/register/admin', function () {
+    return view('auth.register-admin');
+})->name('register.admin');
+
+Route::get('/register-role', function () {
+    return view('landing.role_register');
+})->name('register.role');
+
+
+//REGISTER
+Route::get('/register/santri', [SantriRegisterController::class, 'create'])->name('santri.create');
+Route::post('/register/santri', [SantriRegisterController::class, 'store'])->name('santri.store');
+Route::get('/dashboard', function () {
+    return "Login berhasil, ini dashboard!";
+})->middleware('auth');
+
+
+//LOGIN
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
+Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/login', function () {
+    return view('auth.pilih-login');
+})->middleware('guest');
+
+
+//DASHBOARD
+Route::get('/santri/dashboard', function () {
+    return view('santri.dashboard');
+})->middleware('auth');
+
+Route::get('/santri/dashboard', function () {
+    return view('santri.dashboard');
+})->middleware(['auth', 'role:santri']);

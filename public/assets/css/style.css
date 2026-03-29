@@ -971,3 +971,20 @@ section {
     transform: rotate(360deg);
   }
 }
+
+.btn-register {
+  width: 100%;
+  background: #075F7C;
+  color: #fff;
+  padding: 8px 25px;
+  border-radius: 4px;
+  border: 2px solid #075F7C;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-register:hover {
+  background: #fff;
+  color: #075F7C;
+}
