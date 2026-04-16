@@ -22,9 +22,9 @@
                     </a>
                 </div>
 
-                <!-- Panitia -->
+                <!-- Pengurus -->
                 <div class="col-md-4 mb-4">
-                    <a href="#routepanitiacreate" class="text-decoration-none">
+                    <a href="{{ route('pengurus.create')}}" class="text-decoration-none">
                         <div class="card role-card text-center p-4">
                             <img src="{{ asset('assets/img/admin.png') }}" width="80" class="mb-3 mx-auto">
                             <h4>Pengurus</h4>
@@ -33,9 +33,9 @@
                     </a>
                 </div>
 
-                <!-- Penguji -->
+                <!-- Penyimak -->
                 <div class="col-md-4 mb-4">
-                    <a href="#routepengujicreate" class="text-decoration-none">
+                    <a href="{{ route('penyimak.create')}}" class="text-decoration-none">
                         <div class="card role-card text-center p-4">
                             <img src="{{ asset('assets/img/penguji.png') }}" width="80" class="mb-3 mx-auto">
                             <h4>Penyimak</h4>

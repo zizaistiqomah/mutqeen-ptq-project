@@ -8,27 +8,50 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    
-public function login(Request $request)
-{
-    $credentials = $request->only('email', 'password');
-
-    if (Auth::attempt($credentials)) {
-
-        if (Auth::user()->role == 'santri') {
-            return redirect('/santri/dashboard');
-        } 
-        elseif (Auth::user()->role == 'pengurus') {
-            return redirect('/pengurus/dashboard');
-        } 
-        elseif (Auth::user()->role == 'penyimak') {
-            return redirect('/penyimak/dashboard');
-        }
+    public function showLogin()
+    {
+        return view('auth.login');
     }
 
-    return back()->with('error', 'Email atau password salah');
+    public function login(Request $request)
+    {
+        // VALIDASI
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // hanya dipakai jika ada input role 
+        if ($request->filled('role')) {
+            $credentials['role'] = $request->role;
+        }
+
+        // ATTEMPT LOGIN
+        if (Auth::attempt($credentials)) {
+
+            $request->session()->regenerate();
+
+            $user = Auth::user();
+
+            // REDIRECT BERDASARKAN ROLE 
+            if ($user->role == 'santri') {
+                return redirect()->route('dashboard.santri');
+            } 
+            elseif ($user->role == 'pengurus') {
+                return redirect()->route('dashboard.pengurus');
+            } 
+            elseif ($user->role == 'penyimak') {
+                return redirect()->route('dashboard.penyimak');
+            }
+
+            return redirect('/');
+        }
+
+        return back()->with('error', 'Email atau password salah');
+    }
+
+    public function showPengurusLogin()
+    {
+        return view('pengurus.login-pengurus');
+    }
 }
-
-}
-
-

@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Penyimak extends Model
+class Target extends Model
 {
     protected $fillable = [
         'user_id',
-        'no_hp',
-        'tipe',
-        'nim',
-        'fakultas',
-        'jurusan',
+        'jenis_target',
+        'jumlah_target',
+        'tanggal_mulai',
+        'tanggal_selesai'
     ];
 
     public function user()

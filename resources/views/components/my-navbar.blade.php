@@ -71,7 +71,7 @@
                                         <div class="text-start flex flex-col items-end">
                                             <p class="font-semibold text-md m-0">{{ Auth::user()->name }}</p>
                                             <p class="capitalize font-medium text-sm m-0">
-                                                {{ Auth::user()->role->name }}
+                                                {{ Auth::user()->role }}
                                             </p>
                                         </div>
 
@@ -82,7 +82,7 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('dashboard.' . Auth::user()->role->name)">
+                                    <x-dropdown-link :href="route('dashboard.' . Auth::user()->role )">
                                         {{ __('Dashboard') }}
                                     </x-dropdown-link>
 
