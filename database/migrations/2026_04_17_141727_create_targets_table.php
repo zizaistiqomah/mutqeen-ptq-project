@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('targets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('jenis_target'); // juz / surah
-            $table->integer('jumlah_target');
-            $table->date('tanggal_mulai');
-            $table->date('tanggal_selesai');
+            $table->integer('juz');
+            $table->string('surat');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

@@ -20,4 +20,9 @@ class Penyimak extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+        public function setorans()
+    {
+        return $this->hasMany(Setoran::class);
+    }
 }

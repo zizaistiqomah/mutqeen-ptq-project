@@ -10,6 +10,8 @@ use App\Http\Controllers\PengurusController;
 use App\Http\Controllers\PenyimakController;
 use App\Http\Controllers\Santri\TargetController;
 use App\Http\Controllers\Santri\SantriDashboardController;
+use App\Http\Controllers\Santri\SetoranController;
+
 
 
 
@@ -212,3 +214,13 @@ Route::middleware(['auth', 'role:santri'])->prefix('santri')->group(function () 
 Route::middleware(['auth', 'role:santri'])->prefix('santri')->group(function () {
     Route::resource('target', TargetController::class);
 });
+
+Route::get('/santri/setoran/create', [SetoranController::class, 'create']);
+Route::post('/santri/setoran', [SetoranController::class, 'store']);
+Route::get('/santri/dashboard', [SantriDashboardController::class, 'index']);
+
+Route::post('/santri/murojaah', [SantriDashboardController::class, 'storeMurojaah']);
+Route::post('/santri/murojaah/check', [SantriDashboardController::class, 'checkMurojaah']);
+Route::post('/santri/target', [TargetController::class, 'store']);
+Route::post('/santri/target/{id}/toggle', [TargetController::class, 'toggle']);
+

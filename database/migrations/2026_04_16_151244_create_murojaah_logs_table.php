@@ -11,14 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('setorans', function (Blueprint $table) {
+        Schema::create('murojaah_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
+            $table->date('tanggal');
+
+            // detail hafalan
             $table->integer('juz');
-            $table->string('surah');
-            $table->integer('ayat_mulai');
-            $table->integer('ayat_selesai');
-            $table->date('tanggal_setor');
+            $table->string('surat');
+            $table->string('ayat');
+
+            // status checklist
+            $table->boolean('status')->default(true);
+
             $table->timestamps();
         });
     }
@@ -28,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('setorans');
+        Schema::dropIfExists('murojaah_logs');
     }
 };

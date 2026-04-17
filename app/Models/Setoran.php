@@ -7,16 +7,32 @@ use Illuminate\Database\Eloquent\Model;
 
 class Setoran extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'user_id',
+        'penyimak_id',
+        'tanggal',
         'juz',
-        'surah',
+        'surat_mulai',
         'ayat_mulai',
+        'surat_selesai',
         'ayat_selesai',
-        'tanggal_setor'
+        'is_tasmi',
+        'status',
+        'nilai',
+        'catatan'
     ];
+
+    // relasi ke santri
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    // relasi ke penyimak
+    public function penyimak()
+    {
+        return $this->belongsTo(Penyimak::class);
     }
 }

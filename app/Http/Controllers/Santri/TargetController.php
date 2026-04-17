@@ -22,21 +22,18 @@ class TargetController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jenis_target' => 'required',
-            'jumlah_target' => 'required|integer',
-            'tanggal_mulai' => 'required|date',
-            'tanggal_selesai' => 'required|date',
+            'juz' => 'required|integer',
+            'surat' => 'required|string',
         ]);
 
-        Target::create([
+        \App\Models\Target::create([
             'user_id' => auth()->id(),
-            'jenis_target' => $request->jenis_target,
-            'jumlah_target' => $request->jumlah_target,
-            'tanggal_mulai' => $request->tanggal_mulai,
-            'tanggal_selesai' => $request->tanggal_selesai,
+            'juz' => $request->juz,
+            'surat' => $request->surat,
+            'status' => 0
         ]);
 
-        return redirect()->route('santri.target.index')->with('success', 'Target berhasil ditambahkan');
+        return back();
     }
 
     public function edit($id)
@@ -60,5 +57,15 @@ class TargetController extends Controller
         $target->delete();
 
         return redirect()->route('santri.target.index')->with('success', 'Target berhasil dihapus');
+    }
+
+    public function toggle($id)
+    {
+        $target = \App\Models\Target::findOrFail($id);
+
+        $target->status = !$target->status;
+        $target->save();
+
+        return back();
     }
 }

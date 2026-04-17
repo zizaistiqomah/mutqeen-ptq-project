@@ -47,5 +47,10 @@ class User extends Authenticatable
         return $this->hasOne(Penyimak::class);
     }
 
+        public function setorans()
+    {
+        return $this->hasMany(Setoran::class);
+    }
+
 
 }
