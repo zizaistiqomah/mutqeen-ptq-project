@@ -199,40 +199,74 @@ document.getElementById('juzSelect').addEventListener('change', function () {
         </div>
 
         <!-- 📖 MUROJAAH -->
-        <div class="bg-white rounded-2xl shadow p-5 mb-6">
+<div class="bg-white rounded-2xl shadow p-5 mb-6">
 
-            <h2 class="text-lg font-semibold text-[#1E3A5F] mb-4">
-                📖 Murojaah Terakhir
-            </h2>
+    <h2 class="text-lg font-semibold text-[#1E3A5F] mb-4">
+        📖 Murojaah Hari Ini
+    </h2>
 
-            @if($murojaah)
+    <!-- BUTTON -->
+<button onclick="document.getElementById('formMurojaah').classList.toggle('hidden')"
+    class="bg-green-500 text-white px-4 py-2 rounded-lg">
+    + Input Murojaah
+</button>
 
-                <p class="font-semibold">
-                    Juz {{ $murojaah->juz }}
-                </p>
+<!-- FORM -->
+<form method="POST" action="/santri/murojaah"
+      id="formMurojaah"
+      class="mt-4 space-y-2 hidden">
+    @csrf
 
-                <p class="text-gray-700">
-                    {{ $murojaah->surat }} ({{ $murojaah->ayat }})
-                </p>
+    <!-- JUZ -->
+    <select id="juzSelect" name="juz"
+        class="w-full border rounded-lg p-2">
+        <option value="">Pilih Juz</option>
+        @for($i = 1; $i <= 30; $i++)
+            <option value="{{ $i }}">Juz {{ $i }}</option>
+        @endfor
+    </select>
 
-                @if($murojaah->status)
-                    <p class="text-green-600 font-semibold mt-2">
-                        ✔ Selesai
+    <!-- SURAT -->
+    <select id="suratSelect" name="surat"
+        class="w-full border rounded-lg p-2">
+        <option value="">Pilih Surat</option>
+    </select>
+
+    <!-- AYAT -->
+    <input type="text" name="ayat" placeholder="Ayat (contoh: 1-10)"
+        class="w-full border rounded-lg p-2">
+
+    <button class="bg-blue-500 text-white px-4 py-2 rounded-lg">
+        Simpan
+    </button>
+</form>
+
+    <!-- LIST -->
+    @if($murojaahHariIni->count())
+
+        <div class="mt-4 space-y-2">
+            @foreach($murojaahHariIni as $log)
+                <div class="border rounded-lg p-3">
+
+                    <p class="font-semibold">
+                        Juz {{ $log->juz }} – {{ $log->surat }}
                     </p>
-                @else
-                    <p class="text-yellow-600 font-semibold mt-2">
-                        ⏳ Belum selesai
+
+                    <p class="text-sm text-gray-500">
+                        Ayat {{ $log->ayat }}
                     </p>
-                @endif
 
-            @else
-                <p class="text-gray-400">
-                    Belum ada murojaah
-                </p>
-            @endif
-
+                </div>
+            @endforeach
         </div>
 
+    @else
+        <p class="text-gray-400 mt-4">
+            Belum ada murojaah hari ini
+        </p>
+    @endif
+
+</div>
         <!-- RIWAYAT SETORAN -->
         <div class="bg-white rounded-2xl shadow p-5">
 
@@ -272,4 +306,59 @@ document.getElementById('juzSelect').addEventListener('change', function () {
         </div>
 
     </div>
+
+<script>
+const juzSurat = {
+    1: ["Al-Fatihah", "Al-Baqarah"],
+    2: ["Al-Baqarah"],
+    3: ["Al-Baqarah", "Ali Imran"],
+    4: ["Ali Imran - An-Nisa"],
+    5: ["An-Nisa"],
+    6: ["An-Nisa'", "Al-Maidah"],
+    7: ["Al-Maidah", "Al-An'am"],
+    8: ["AL-An'am","Al-A'raf"],
+    9: ["Al-A'raf","Al-Anfal"],
+    10: ["Al-Anfal", "At-Ataubah"],
+    11: ["At-Atubah","Yunus", "Hud"],
+    12: ["Hud","Yusuf"],
+    13: ["Yusuf", "Ar-Rad"],
+    14: ["Al-Hijr","An-Nahl"],
+    15: ["Al-Isra'","Al-Kahfi"],
+    16: ["Al-Kahfi","Maryam", "Ta-Ha"],
+    17: ["Al-Anbiya'","Al-Hajj"],
+    18: ["Al-Mu'minun","An-Nur", "Al-Furqan"],
+    19: ["Al-Furqan","Asy-Syu'ara", "An-Naml"],
+    20: ["An-Naml","Al-Qasas", "Al-Ankabut"],
+    21: ["Al-Ankabut","Ar-Rum", "Luqman", "As-Sajdah", "Al-Ahzab"],
+    22: ["Al-Ahzab","Saba'", "Fatir", "Yasin"],
+    23: ["Yasin","As-Saffat'", "Sad", "Az-Zumar"],
+    24: ["Az-Zumar","Al-Ghafir'", "Al-Fusilat"],
+    25: ["Al-Fusilat","Asy-Syura'", "Az-Zukhruf", "Ad-Dukhan", "Al-Jatsiyah"],
+    26: ["Al-Jatsiyah","Al-Ahqaf", "Muhammad", "Al-Fath", "Al-Hujurat", "Qaf", "Az-Zariyat"],
+    27: ["Az-Zariyat","At_Tur", "An-Najm", "Ar-Rahman", "Al-Waqi'ah", "Qaf", "Al-Hadid"],
+    28: ["Al-Mujadilah","Al-Hasyr", "Al-Mumtahanah", "As-Saff", "Al-Jumu'ah", "Al-Munafiqun", "At-Tagabun", "At-Talaq", "At-Tahrim"],
+    29: ["Al-Mulk","Al-Qalam", "Haqqah", "Al-Ma'arij", "Nuh", "Al-Jinn", "Al-Muzzammil", "A-Muddassir", "Al-Qiyamah", "Al-Insan", "Al-Mursalat"],
+    30: ["An-Naba", "AN-Nazi'at", "At-Takwir", "Al-Infitar","Al-Muthaffifin", "Al-Insyiqaq", "AL-Buruj", "At-Tariq", "AL-A'la", "Al-Ghasyiyah", "AL-Fajr", "Al-Balad", "Asy-Syams", "Al-Lail", "Ad-Dhuha", "AL-Insyirah", "At- Tin", "Al-'Alaq", "AL-Qadr", "AL-Bayyinah","Az-Zalzalah", "Al-'Adiyat", "Al-Qari'ah", "At-Takasur", "Al-'Asr", "Al-Humazah", "Al-Fil", "Al-Quraisy", "AL-Ma'un", "Al-Kausar", "AL-Kafirun", "An-Nasr", "Al-Lahab", "Al-Ikhlas", "Al-Falaq", "An-Nas"]
+};
+</script>
+
+<!-- 🔥 LOGIC KAMU (JANGAN DIUBAH) -->
+<script>
+document.getElementById('juzSelect').addEventListener('change', function () {
+    let juz = this.value;
+    let suratSelect = document.getElementById('suratSelect');
+
+    // reset
+    suratSelect.innerHTML = '<option value="">Pilih Surat</option>';
+
+    if (juzSurat[juz]) {
+        juzSurat[juz].forEach(function (surat) {
+            let option = document.createElement('option');
+            option.value = surat;
+            option.text = surat;
+            suratSelect.appendChild(option);
+        });
+    }
+});
+</script>
 </x-app-layout>

@@ -31,9 +31,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="image-stack">
-                            <div class="image-top">
-                                <img src="assets/img/circle.png" class="img-fluid" alt="">
-                            </div>
+                            
                             <div class="image-bottom">
                                 <img src="assets/img/profile.jpg" class="img-fluid" alt="">
                             </div>
@@ -54,15 +52,9 @@
                             </p>
                         </div>
                         <a class="btn scrollto" href="#visimisi" onclick="showVisi()">Pelajari Lebih Lanjut</a>
-                        <div class="image-2">
-                            <img src="assets/img/circle.png" class="img-fluid" alt="">
-                        </div>
+                        
 
                     </div>
-                </div>
-
-                <div class="image-3">
-                    <img src="assets/img/circle.png" class="img-fluid" alt="">
                 </div>
 
                 <div id="visimisi" style="display: none;">

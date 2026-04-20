@@ -18,4 +18,9 @@ class Target extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function murojaahLogs()
+    {
+        return $this->hasMany(MurojaahLog::class);
+    }
 }

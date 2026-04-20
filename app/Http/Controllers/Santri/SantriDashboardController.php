@@ -21,30 +21,50 @@ class SantriDashboardController extends Controller
 
         $userId = $user->id;
 
+        // =====================
         // TARGET
-
-        $targets = \App\Models\Target::where('user_id', auth()->id())->get();
+        // =====================
+        $targets = Target::where('user_id', $userId)->latest()->get();
 
         $totalTarget = $targets->count();
         $completedTarget = $targets->where('status', 1)->count();
 
         $progressTarget = $totalTarget > 0
-            ? ($completedTarget / $totalTarget) * 100
+            ? round(($completedTarget / $totalTarget) * 100, 0)
             : 0;
 
+        // =====================
         // SETORAN
+        // =====================
         $setorans = Setoran::where('user_id', $userId)
             ->latest()
             ->get();
 
-        $setoranTerakhir = Setoran::where('user_id', $userId)
-            ->latest()
-            ->first();
+        $setoranTerakhir = $setorans->first();
 
         $totalSetoran = $setorans->count();
 
+        // 🔥 FIX: TAMBAHIN INI (BIAR ERROR HILANG)
+        $progress = 0;
 
+        // =====================
         // MUROJAAH
+        // =====================
+        
+$today = Carbon::today()->toDateString();
+
+$murojaahToday = MurojaahLog::where('user_id', $userId)
+    ->where('tanggal', $today)
+    ->pluck('target_id')
+    ->toArray();
+
+$today = now()->toDateString();
+
+$murojaahHariIni = MurojaahLog::where('user_id', $userId)
+    ->whereDate('tanggal', $today)
+    ->latest()
+    ->get();
+
         $murojaahTerakhir = MurojaahLog::where('user_id', $userId)
             ->latest()
             ->first();
@@ -57,18 +77,21 @@ class SantriDashboardController extends Controller
             ->where('status', 1)
             ->count();
 
-        $progressMurojaah = min(100, ($totalMurojaah / 7) * 100);
+        $progressMurojaah = min(100, round(($totalMurojaah / 7) * 100, 0));
 
         return view('santri.dashboard', compact(
+            'targets',
+            'progressTarget',
+
             'setorans',
             'setoranTerakhir',
             'totalSetoran',
             'progress',
+
             'murojaahTerakhir',
             'totalMurojaah',
             'progressMurojaah',
-            'targets',
-            'progressTarget'
+            'murojaahHariIni'
         ));
     }
 
@@ -92,7 +115,7 @@ class SantriDashboardController extends Controller
             'status' => 0,
         ]);
 
-        return back();
+        return back()->with('success', 'Murojaah berhasil disimpan');
     }
 
     // =====================
@@ -110,6 +133,34 @@ class SantriDashboardController extends Controller
             $log->update(['status' => 1]);
         }
 
-        return back();
+        return back()->with('success', 'Murojaah selesai');
     }
+
+    public function toggleMurojaah(Request $request)
+{
+    $userId = auth()->id();
+    $today = now()->toDateString();
+
+    $existing = MurojaahLog::where('user_id', $userId)
+        ->where('target_id', $request->target_id)
+        ->where('tanggal', $today)
+        ->first();
+
+    if ($existing) {
+        // kalau sudah ada → hapus (uncheck)
+        $existing->delete();
+    } else {
+        // kalau belum → insert
+        MurojaahLog::create([
+            'user_id' => $userId,
+            'target_id' => $request->target_id,
+            'tanggal' => $today,
+            'status' => 1
+        ]);
+    }
+
+    return back();
+}
+
+
 }

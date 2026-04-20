@@ -54,4 +54,14 @@ class LoginController extends Controller
     {
         return view('pengurus.login-pengurus');
     }
+
+    public function logout()
+    {
+        \Illuminate\Support\Facades\Auth::logout();
+
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect('/login');
+    }
 }

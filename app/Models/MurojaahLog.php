@@ -17,4 +17,9 @@ class MurojaahLog extends Model
         'ayat',
         'status'
     ];
+
+    public function target()
+    {
+        return $this->belongsTo(Target::class);
+    }
 }
