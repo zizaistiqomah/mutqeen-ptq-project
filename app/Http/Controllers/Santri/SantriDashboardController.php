@@ -51,19 +51,19 @@ class SantriDashboardController extends Controller
         // MUROJAAH
         // =====================
         
-$today = Carbon::today()->toDateString();
+        $today = Carbon::today()->toDateString();
 
-$murojaahToday = MurojaahLog::where('user_id', $userId)
-    ->where('tanggal', $today)
-    ->pluck('target_id')
-    ->toArray();
+        $murojaahToday = MurojaahLog::where('user_id', $userId)
+            ->where('tanggal', $today)
+            ->pluck('target_id')
+            ->toArray();
 
-$today = now()->toDateString();
+        $today = now()->toDateString();
 
-$murojaahHariIni = MurojaahLog::where('user_id', $userId)
-    ->whereDate('tanggal', $today)
-    ->latest()
-    ->get();
+        $murojaahHariIni = MurojaahLog::where('user_id', $userId)
+            ->whereDate('tanggal', $today)
+            ->latest()
+            ->get();
 
         $murojaahTerakhir = MurojaahLog::where('user_id', $userId)
             ->latest()

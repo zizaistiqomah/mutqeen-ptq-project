@@ -22,18 +22,24 @@ class TargetController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'juz' => 'required|integer',
-            'surat' => 'required|string',
+            'target_juz' => 'required|integer|min:1|max:30',
         ]);
 
-        \App\Models\Target::create([
+        $targetHalaman = 20;
+
+        Target::create([
+
             'user_id' => auth()->id(),
-            'juz' => $request->juz,
-            'surat' => $request->surat,
-            'status' => 0
+
+            'juz' => $request->target_juz,
+            'surat' => '-',
+            'target_juz' => $request->target_juz,
+            'target_halaman' => $targetHalaman,
+            'progress_halaman' => 0,
+
         ]);
 
-        return back();
+        return back()->with('success', 'Target berhasil dibuat');
     }
 
     public function edit($id)
@@ -42,13 +48,34 @@ class TargetController extends Controller
         return view('santri.target.edit', compact('target'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Target $target)
     {
-        $target = Target::findOrFail($id);
+        $request->validate([
+            'target_juz' => [
+                'required',
+                'integer',
+                'min:1',
+                'max:30',
+            ],
+        ]);
 
-        $target->update($request->all());
+        $existing = Target::where('user_id', auth()->id())
+            ->where('target_juz', $request->target_juz)
+            ->exists();
 
-        return redirect()->route('santri.target.index')->with('success', 'Target berhasil diupdate');
+        if ($existing) {
+            return back()->with('error', 'Target juz sudah ditambahkan.');
+        }
+
+        $targetHalaman = $request->target_juz * 20;
+
+        $target->update([
+            'judul' => $request->judul,
+            'target_juz' => $request->target_juz,
+            'target_halaman' => $targetHalaman,
+        ]);
+
+        return back()->with('success', 'Target berhasil diupdate.');
     }
 
     public function destroy($id)

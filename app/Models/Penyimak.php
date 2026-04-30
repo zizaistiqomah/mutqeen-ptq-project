@@ -25,4 +25,9 @@ class Penyimak extends Model
     {
         return $this->hasMany(Setoran::class);
     }
+
+    public function halaqahs()
+    {
+        return $this->hasMany(Halaqah::class);
+    }
 }

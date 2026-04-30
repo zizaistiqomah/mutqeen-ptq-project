@@ -1,8 +1,7 @@
-<h1>Dashboard Pengurus</h1>
-<p>Selamat datang, {{ auth()->user()->name }}</p>
-<p>Role: {{ auth()->user()->role }}</p>
+<x-app-pengurus-layout>
 
-<form method="POST" action="/logout">
-    @csrf
-    <button class="btn">Logout</button>
-</form>
+    <h1 class="text-3xl font-bold text-gray-800">
+        Dashboard Pengurus
+    </h1>
+
+</x-app-pengurus-layout>

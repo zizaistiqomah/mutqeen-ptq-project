@@ -13,6 +13,9 @@ use App\Http\Controllers\Santri\SantriDashboardController;
 use App\Http\Controllers\Santri\TargetController;
 use App\Http\Controllers\Santri\SetoranController;
 
+use App\Http\Controllers\Penyimak\DashboardController;
+use App\Http\Controllers\Pengurus\DashboardPengurusController;
+
 /*
 |--------------------------------------------------------------------------
 | LANDING
@@ -31,7 +34,7 @@ Route::get('/departemen-psdm', fn() => view('landing.departemen_psdm'))
     ->name('departemen.psdm');
 
 Route::get('/departemen-tahfidz', fn() => view('landing.departemen_tahfidz'))
-    ->name('departemen.tahfidz'); // 🔥 INI YANG ERROR
+    ->name('departemen.tahfidz'); 
 
 Route::get('/program-tahfidz', fn() => view('landing.tahfidz'))
     ->name('program.tahfidz');
@@ -106,11 +109,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/santri', [SantriDashboardController::class, 'index'])
         ->name('dashboard.santri');
 
-    Route::get('/dashboard/pengurus', fn() => view('pengurus.dashboard'))
+    Route::get('/dashboard/pengurus', [DashboardPengurusController::class, 'index'])
         ->name('dashboard.pengurus');
 
-    Route::get('/dashboard/penyimak', fn() => view('penyimak.dashboard'))
+    Route::get('/dashboard/penyimak', [DashboardController::class, 'index'])
         ->name('dashboard.penyimak');
+
+    Route::put(
+        '/penyimak/setoran/{id}/verifikasi',
+        [DashboardController::class, 'verifikasi']
+    )->name('penyimak.verifikasi');
 });
 
 /*

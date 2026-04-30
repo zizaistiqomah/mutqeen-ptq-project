@@ -11,7 +11,10 @@ class Target extends Model
         'user_id',
         'juz',
         'surat',
-        'status'
+        'status',
+        'target_juz',
+        'target_halaman',
+        'progress_halaman',
     ];
 
     public function user()

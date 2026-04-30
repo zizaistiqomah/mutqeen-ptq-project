@@ -21,8 +21,12 @@ class Setoran extends Model
         'is_tasmi',
         'status',
         'nilai',
-        'catatan'
+        'catatan',
+        'surah',
+        'jumlah_halaman',
+        'halaman',
     ];
+
 
     // relasi ke santri
     public function user()
@@ -35,4 +39,10 @@ class Setoran extends Model
     {
         return $this->belongsTo(Penyimak::class);
     }
+
+    public function santri()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }
