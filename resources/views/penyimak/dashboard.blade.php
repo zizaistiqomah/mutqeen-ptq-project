@@ -4,21 +4,43 @@
 <div class="grid grid-cols-4 gap-5 mt-6">
 
     {{-- CARD 1 --}}
-    <div class="bg-white border border-gray-100 rounded-3xl p-5 flex items-start justify-between shadow-sm">
+    <div class="bg-white border border-gray-100 rounded-3xl p-5 flex items-start justify-between shadow-sm 
+                transition duration-300 hover:shadow-md hover:-translate-y-1">
 
         <div class="flex gap-4">
 
+            <!-- ICON -->
             <div class="w-14 h-14 rounded-2xl bg-[#075F7C] flex items-center justify-center">
-                <i class="fi fi-rr-users text-white text-2xl"></i>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="w-7 h-7 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+
+                    <!-- Kepala tengah -->
+                    <circle cx="12" cy="8" r="3" stroke-width="2"/>
+
+                    <!-- Badan -->
+                    <path stroke-width="2" stroke-linecap="round"
+                        d="M5 20c0-3 3-5 7-5s7 2 7 5"/>
+
+                    <!-- Kepala kiri -->
+                    <circle cx="5" cy="10" r="2" stroke-width="2"/>
+
+                    <!-- Kepala kanan -->
+                    <circle cx="19" cy="10" r="2" stroke-width="2"/>
+
+                </svg>
             </div>
 
+            <!-- TEXT -->
             <div>
                 <p class="text-sm text-gray-500">
                     Kelompok Halaqah
                 </p>
 
                 <h3 class="text-xl font-bold text-gray-800 mt-1">
-                    {{ $halaqah?->nama_halaqah ?? 'Belum ada halaqah' }}
+                    {{ $halaqah->nama_halaqah ?? 'Belum Ada Halaqah' }}
                 </h3>
 
                 <p class="text-sm text-gray-500 mt-1">
@@ -39,14 +61,29 @@
     </div>
 
     {{-- CARD 2 --}}
-    <div class="bg-white border border-gray-100 rounded-3xl p-5 shadow-sm">
-
+    <div class="bg-white border border-gray-100 rounded-3xl p-5 shadow-sm
+                transition duration-300 hover:shadow-md hover:-translate-y-1">
         <div class="flex items-center gap-4">
 
+            <!-- ICON -->
             <div class="w-14 h-14 rounded-2xl bg-[#075F7C] flex items-center justify-center">
-                <i class="fi fi-rr-time-check text-white text-2xl"></i>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="w-7 h-7 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+
+                    <!-- Lingkaran jam -->
+                    <circle cx="12" cy="12" r="9" stroke-width="2"/>
+
+                    <!-- Jarum jam -->
+                    <path stroke-width="2" stroke-linecap="round"
+                        d="M12 7v5l3 2"/>
+
+                </svg>
             </div>
 
+            <!-- TEXT -->
             <div>
                 <p class="text-sm text-gray-500">
                     Antrean Setoran Hari Ini
@@ -65,15 +102,34 @@
 
     </div>
 
-    {{-- CARD 3 --}}
-    <div class="bg-white border border-gray-100 rounded-3xl p-5 shadow-sm">
+        {{-- CARD 3 --}}
+    <div class="bg-white border border-gray-100 rounded-3xl p-5 shadow-sm
+                transition duration-300 hover:shadow-md hover:-translate-y-1">
 
         <div class="flex items-center gap-4">
 
-            <div class="w-14 h-14 rounded-2xl bg-[#075F7C] flex items-center justify-center">
-                <i class="fi fi-rr-badge-check text-white text-2xl"></i>
+            <!-- ICON -->
+            <div class="w-14 h-14 rounded-2xl bg-[#075F7C]
+                        flex items-center justify-center">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="w-7 h-7 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+
+                    <!-- Badge -->
+                    <circle cx="12" cy="12" r="9" stroke-width="2"/>
+
+                    <!-- Check -->
+                    <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        d="M8 12l3 3 5-5"/>
+
+                </svg>
+
             </div>
 
+            <!-- TEXT -->
             <div>
                 <p class="text-sm text-gray-500">
                     Total Verifikasi
@@ -91,16 +147,39 @@
         </div>
 
     </div>
-
-    {{-- CARD 4 --}}
-    <div class="bg-white border border-gray-100 rounded-3xl p-5 shadow-sm">
+        {{-- CARD 4 --}}
+    <div class="bg-white border border-gray-100 rounded-3xl p-5 shadow-sm
+                transition duration-300 hover:shadow-md hover:-translate-y-1">
 
         <div class="flex items-center gap-4">
 
-            <div class="w-14 h-14 rounded-2xl bg-[#075F7C] flex items-center justify-center">
-                <i class="fi fi-rr-chart-histogram text-white text-2xl"></i>
+            <!-- ICON -->
+            <div class="w-14 h-14 rounded-2xl bg-[#075F7C]
+                        flex items-center justify-center">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="w-7 h-7 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+
+                    <!-- Axis -->
+                    <path stroke-width="2" stroke-linecap="round"
+                        d="M4 19V5m0 14h16"/>
+
+                    <!-- Line naik -->
+                    <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        d="M6 15l4-4 3 3 5-6"/>
+
+                    <!-- Arrow -->
+                    <path stroke-width="2" stroke-linecap="round"
+                        d="M18 8h-3M18 8v3"/>
+
+                </svg>
+
             </div>
 
+            <!-- TEXT -->
             <div>
                 <p class="text-sm text-gray-500">
                     Total Setoran Minggu Ini
@@ -110,19 +189,9 @@
                     {{ $totalSetoranMingguIni }} Setoran
                 </h3>
 
-                @if($persentaseMingguan >= 0)
-
-                    <p class="text-sm text-green-500 mt-1">
-                        Naik {{ $persentaseMingguan }}% dari minggu lalu ↗
-                    </p>
-
-                @else
-
-                    <p class="text-sm text-red-500 mt-1">
-                        Turun {{ abs($persentaseMingguan) }}% dari minggu lalu ↘
-                    </p>
-
-                @endif
+                <p class="text-sm text-gray-500 mt-1">
+                    Rekapitulasi Mingguan
+                </p>
 
             </div>
 
@@ -408,14 +477,14 @@
         {{-- LIST --}}
         <div class="space-y-4 max-h-[450px] overflow-y-auto">
 
-            @forelse($anggotaHalaqah as $santri)
+            @forelse($halaqah->santris ?? [] as $santri)
 
                 <div class="flex items-center justify-between border border-gray-100 rounded-2xl p-4">
 
                     <div class="flex items-center gap-4">
 
                         <div class="w-12 h-12 rounded-full bg-[#075F7C]/10 flex items-center justify-center text-[#075F7C] font-bold">
-                            {{ strtoupper(substr($santri->user->name, 0, 1)) }}
+                            {{ strtoupper(substr($santri->name, 0, 1)) }}
                         </div>
 
                         <div>
@@ -423,7 +492,7 @@
                             <div class="flex items-center gap-2">
 
                                 <h3 class="font-semibold text-gray-800">
-                                    {{ $santri->user->name }}
+                                    {{ $santri->name }}
                                 </h3>
 
                                 @if($loop->iteration == 1)

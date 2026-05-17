@@ -16,19 +16,27 @@
         <p class="text-sm text-gray-500">Kelompok Halaqah</p>
 
         <!-- ICON -->
-        <div class="bg-blue-100 text-blue-600 p-2 rounded-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-width="2" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m10-4a4 4 0 11-8 0 4 4 0 018 0zM5 10a4 4 0 118 0 4 4 0 01-8 0z"/>
+        <div class="bg-blue-100 text-[#075F7C]  p-2 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                class="w-5 h-5" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor">
+                <circle cx="12" cy="8" r="3" stroke-width="2"/>
+                <path stroke-width="2" stroke-linecap="round"
+                    d="M6 20c0-3 3-5 6-5s6 2 6 5"/>
+                <circle cx="5" cy="10" r="2" stroke-width="2"/>
+                <circle cx="19" cy="10" r="2" stroke-width="2"/>
             </svg>
         </div>
     </div>
 
     <h2 class="text-lg font-semibold  mt-3">
-        {{ $halaqah->nama ?? 'Belum ada kelompok' }}
+        {{ $user->halaqah->nama_halaqah ?? 'Belum Dikelompokkan' }}
     </h2>
 
     <p class="text-sm text-gray-400 mt-1">
-        {{ $halaqah->musyrif ?? '-' }}
+        {{ $user->halaqah?->penyimak?->user?->name ?? '-' }}
     </p>
 </div>
 
@@ -39,9 +47,17 @@
     <div class="flex items-center justify-between">
         <p class="text-sm text-gray-500">Target Hafalan</p>
 
-        <div class="bg-green-100 text-green-600 p-2 rounded-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12"/>
+        <div class="bg-blue-100 text-[#075F7C] p-2 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                class="w-5 h-5" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor">
+
+                <circle cx="12" cy="12" r="8" stroke-width="2"/>
+                <circle cx="12" cy="12" r="4" stroke-width="2"/>
+                <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 12l6-6M18 6h-4M18 6v4"/>
             </svg>
         </div>
     </div>
@@ -56,24 +72,60 @@
 </div>
 
 
+@php
+    $streakValue = $streak ?? 0;
+
+    // STATUS 
+    if ($streakValue == 0) {
+        $label = 'Belum mulai';
+        $color = 'text-gray-400';
+        $bg = 'bg-gray-100';
+        $icon = '😴';
+    } elseif ($streakValue < 1) {
+        $label = 'Hebat! Kamu sudah memulainya';
+        $color = 'text-orange-400';
+        $bg = 'bg-orange-100';
+        $icon = '🔥';
+    } elseif ($streakValue < 3) {
+        $label = 'Hebat! Kamu mulai konsisten';
+        $color = 'text-orange-600';
+        $bg = 'bg-orange-100';
+        $icon = '🔥';
+    } elseif ($streakValue < 7) {
+        $label = 'On Fire!';
+        $color = 'text-orange-600';
+        $bg = 'bg-orange-100';
+        $icon = '🔥';
+    } else {
+        $label = 'MasyaAllah konsisten!';
+        $color = 'text-red-500';
+        $bg = 'bg-red-100';
+        $icon = '🚀';
+    }
+@endphp
+
 <div class="bg-white rounded-xl shadow p-5 border 
             hover:shadow-lg hover:-translate-y-1 transition duration-300">
 
     <div class="flex items-center justify-between">
         <p class="text-sm text-gray-500">Streak</p>
 
-        <div class="bg-orange-100 text-orange-500 p-2 rounded-lg">
-            🔥
+        <!-- ICON DINAMIS -->
+        <div class="{{ $bg }} {{ $color }} p-2 rounded-lg text-lg">
+            {{ $icon }}
         </div>
     </div>
 
-    <h2 class="text-2xl font-bold  mt-3">
-        {{ $streak ?? 0 }} Hari
+    <!-- ANGKA -->
+    <h2 class="text-2xl font-bold mt-3 {{ $color }}">
+        {{ $streakValue }} Setoran
     </h2>
 
-    <p class="text-sm text-gray-400 mt-1">
-        Konsistensi setoran
+    <!-- LABEL DINAMIS -->
+    <p class="text-sm mt-1 {{ $color }}">
+        {{ $label }}
     </p>
+
 </div>
 
 
@@ -83,8 +135,15 @@
     <div class="flex items-center justify-between">
         <p class="text-sm text-gray-500">Setoran Terakhir</p>
 
-        <div class="bg-purple-100 text-purple-600 p-2 rounded-lg">
-            📖
+        <div class="bg-blue-100 text-[#075F7C] p-2 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                class="w-5 h-5" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor">
+                <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 6v12m0 0c-2-1-4-1-6 0V6c2-1 4-1 6 0m0 12c2-1 4-1 6 0V6c-2-1-4-1-6 0"/>
+            </svg>
         </div>
     </div>
 
@@ -105,40 +164,70 @@
 
 </div>
 
- 
-
 
 <div class="flex flex-col lg:flex-row gap-5 mt-6">
 
     <!-- LEFT: PENCAPAIAN -->
     <div class="w-full lg:w-1/3">
         <div class="bg-white rounded-2xl shadow p-5 h-full">
-            <h2 class="text-lg font-semibold  mb-4">
-                📊 Pencapaian Minggu Ini
+
+            <h2 class="text-lg font-semibold mb-4">
+                Pencapaian Minggu Ini
             </h2>
 
             <div class="space-y-4">
-                <div class="flex justify-between">
+
+                <!-- JUMLAH SETORAN -->
+                <div class="flex justify-between items-center">
                     <p class="text-gray-500 text-sm">Jumlah Setoran</p>
-                    <p class="font-semibold">{{ $setoranMingguIni ?? 0 }}</p>
+                    <p class="font-semibold text-[#075F7C]">
+                        {{ $setoranMingguIni ?? 0 }} 
+                    </p>
                 </div>
 
-                <div class="flex justify-between">
+                <!-- JUZ -->
+                <div class="flex justify-between items-center">
                     <p class="text-gray-500 text-sm">Juz Disetorkan</p>
-                    <p class="font-semibold">{{ $juzMingguIni ?? 0 }}</p>
+                    <p class="font-semibold text-[#075F7C]">
+                        {{ $juzMingguIni ?? 0 }} Juz
+                    </p>
                 </div>
 
-                <div class="flex justify-between">
+                <!-- HALAMAN -->
+                <div class="flex justify-between items-center">
+                    <p class="text-gray-500 text-sm">Halaman Disetorkan</p>
+                    <p class="font-semibold text-[#075F7C]">
+                        {{ $halamanMingguIni ?? 0 }} Halaman
+                    </p>
+                </div>
+
+                <!-- STREAK -->
+                <div class="flex justify-between items-center">
                     <p class="text-gray-500 text-sm">Streak</p>
                     <p class="font-semibold text-orange-500">
                         🔥 {{ $streak ?? 0 }} hari
                     </p>
                 </div>
+
             </div>
 
-            <div class="bg-[#075F7C]/10 text-[#075F7C] p-3 rounded-lg text-sm mb-4">
-                Terus jaga konsistensi hafalanmu 
+            <!-- 🔥 MOTIVASI DINAMIS -->
+            @php
+                $motivasi = 'Terus jaga konsistensi hafalanmu, setiap satu ayat yang kamu hafalkan adalah langkah yang besar ✨';
+
+                if (($streak ?? 0) >= 7) {
+                    $motivasi = 'MasyaAllah! Konsistensi luar biasa 🔥';
+                } elseif (($streak ?? 0) >= 2) {
+                    $motivasi = 'Bagus! Pertahankan ritme hafalanmu 👍';
+                } elseif (($setoranMingguIni ?? 0) == 0) {
+                    $motivasi = 'Yuk mulai setor hafalan minggu ini ✨';
+                }
+            @endphp
+
+            <div class="bg-[#075F7C]/10 text-[#075F7C] p-3 rounded-lg text-sm mt-5">
+                {{ $motivasi }}
             </div>
+
         </div>
     </div>
 
@@ -150,19 +239,22 @@
             <!-- HEADER -->
             <div class="flex justify-between items-center mb-5">
 
-                <div>
-                    <h2 class="text-lg font-semibold">
-                        🎯 Target Hafalan
-                    </h2>
+                <div class="flex items-start gap-3">
 
-                    <p class="text-sm text-gray-500 mt-1">
-                        Progress target berdasarkan total halaman hafalan terverifikasi
-                    </p>
+                    <!-- TEXT -->
+                    <div>
+                        <h2 class="text-lg font-semibold">
+                            Target Hafalan
+                        </h2>
+
+                    </div>
+
                 </div>
 
+                <!-- BUTTON -->
                 <button
                     onclick="document.getElementById('formTarget').classList.toggle('hidden')"
-                    class="hover:bg-[#1E3A5F] active:scale-95 bg-[#075F7C]
+                    class="hover:bg-[#054B63] active:scale-95 bg-[#075F7C]
                         text-white px-4 py-2 rounded-xl text-sm font-medium transition"
                 >
                     + Set Target
@@ -211,10 +303,6 @@
 
                             </select>
 
-                            <p class="text-xs text-gray-500 mt-2">
-                                1 juz = 20 halaman
-                            </p>
-
                         </div>
 
                         <!-- BUTTON -->
@@ -249,21 +337,21 @@
             @endphp
 
             <!-- PROGRESS UTAMA -->
-@php
+            @php
 
-    $totalTargetHalaman = $targets->sum('target_halaman');
+                $totalTargetHalaman = $targets->sum('target_halaman');
 
-    $totalProgressHalaman = $targets->sum('progress_halaman');
+                $totalProgressHalaman = $targets->sum('progress_halaman');
 
-    $progressTarget = 0;
+                $progressTarget = 0;
 
-    if ($totalTargetHalaman > 0) {
+                if ($totalTargetHalaman > 0) {
 
-        $progressTarget =
-            ($totalProgressHalaman / $totalTargetHalaman) * 100;
-    }
+                    $progressTarget =
+                        ($totalProgressHalaman / $totalTargetHalaman) * 100;
+                }
 
-@endphp
+            @endphp
 
 <div class="mb-7">
 
@@ -444,15 +532,6 @@
 
                                 </div>
 
-                                <div class="w-full bg-gray-200 h-3 rounded-full overflow-hidden">
-
-                                    <div
-                                        class="bg-[#075F7C] h-3 rounded-full transition-all duration-500"
-                                        style="width: {{ $persen }}%"
-                                    ></div>
-
-                                </div>
-
                             </div>
 
                             <!-- INFO -->
@@ -485,10 +564,6 @@
                 @empty
 
                     <div class="text-center py-10">
-
-                        <div class="text-5xl mb-3">
-                            📖
-                        </div>
 
                         <h3 class="font-semibold text-gray-700">
                             Belum Ada Target Hafalan
@@ -585,7 +660,7 @@ const juzSurat = {
 
                     <div>
                         <h2 class="text-lg font-semibold">
-                            📝 Setoran Hafalan
+                            Setoran Hafalan
                         </h2>
 
                         <p class="text-sm text-gray-500 mt-1">
@@ -595,7 +670,7 @@ const juzSurat = {
 
                     <button
                         onclick="document.getElementById('formSetoran').classList.toggle('hidden')"
-                        class="hover:bg-[#1E3A5F] active:scale-95 bg-[#075F7C]
+                        class="hover:bg-[#054B63] active:scale-95 bg-[#075F7C]
                             text-white px-3 py-2 rounded-xl text-sm font-medium transition"
                     >
                         + Tambah
@@ -742,9 +817,7 @@ const juzSurat = {
                             placeholder="Contoh: 1"
                             class="w-full border border-gray-300 rounded-xl px-4 py-3
                                 focus:outline-none focus:ring-2
-                                focus:ring-[#075F7C] focus:border-[#075F7C]"
-                        >
-
+                                focus:ring-[#075F7C] focus:border-[#075F7C]">
                     </div>
 
                     <!-- SURAT SELESAI -->
@@ -760,8 +833,7 @@ const juzSurat = {
                             required
                             class="w-full border border-gray-300 rounded-xl px-4 py-3
                                 focus:outline-none focus:ring-2
-                                focus:ring-[#075F7C] focus:border-[#075F7C]"
-                        >
+                                focus:ring-[#075F7C] focus:border-[#075F7C]">
 
                             <option value="">
                                 -- Pilih Surat --
@@ -786,256 +858,54 @@ const juzSurat = {
                             placeholder="Contoh: 20"
                             class="w-full border border-gray-300 rounded-xl px-4 py-3
                                 focus:outline-none focus:ring-2
-                                focus:ring-[#075F7C] focus:border-[#075F7C]"
-                        >
-
+                                focus:ring-[#075F7C] focus:border-[#075F7C]">
                     </div>
 
                     <!-- BUTTON -->
                     <button
-                        class="hover:bg-[#1E3A5F] active:scale-95
+                        class="hover:bg-[#054B63] active:scale-95
                             w-full bg-[#075F7C]
                             text-white py-3 rounded-xl
-                            font-medium transition"
-                    >
+                            font-medium transition">
                         Simpan Setoran
                     </button>
-
                 </form>
-
             </div>
-
         </div>
 
         <!-- SCRIPT DROPDOWN SURAT -->
         <script>
-
             const suratPerJuz = {
-
-                1: [
-                    "Al-Fatihah",
-                    "Al-Baqarah"
-                ],
-
-                2: [
-                    "Al-Baqarah"
-                ],
-
-                3: [
-                    "Al-Baqarah",
-                    "Ali-Imran"
-                ],
-
-                4: [
-                    "Ali-Imran",
-                    "An-Nisa"
-                ],
-
-                5: [
-                    "An-Nisa"
-                ],
-
-                6: [
-                    "An-Nisa",
-                    "Al-Maidah"
-                ],
-
-                7: [
-                    "Al-Maidah",
-                    "Al-An'am"
-                ],
-
-                8: [
-                    "Al-An'am",
-                    "Al-A'raf"
-                ],
-
-                9: [
-                    "Al-A'raf",
-                    "Al-Anfal"
-                ],
-
-                10: [
-                    "Al-Anfal",
-                    "At-Taubah"
-                ],
-
-                11: [
-                    "At-Taubah",
-                    "Yunus",
-                    "Hud"
-                ],
-
-                12: [
-                    "Hud",
-                    "Yusuf"
-                ],
-
-                13: [
-                    "Yusuf",
-                    "Ar-Ra'd",
-                    "Ibrahim"
-                ],
-
-                14: [
-                    "Al-Hijr",
-                    "An-Nahl"
-                ],
-
-                15: [
-                    "Al-Isra",
-                    "Al-Kahfi"
-                ],
-
-                16: [
-                    "Al-Kahfi",
-                    "Maryam",
-                    "Ta-Ha"
-                ],
-
-                17: [
-                    "Al-Anbiya",
-                    "Al-Hajj"
-                ],
-
-                18: [
-                    "Al-Mu'minun",
-                    "An-Nur",
-                    "Al-Furqan"
-                ],
-
-                19: [
-                    "Al-Furqan",
-                    "Asy-Syu'ara",
-                    "An-Naml"
-                ],
-
-                20: [
-                    "An-Naml",
-                    "Al-Qasas",
-                    "Al-Ankabut"
-                ],
-
-                21: [
-                    "Al-Ankabut",
-                    "Ar-Rum",
-                    "Luqman",
-                    "As-Sajdah",
-                    "Al-Ahzab"
-                ],
-
-                22: [
-                    "Al-Ahzab",
-                    "Saba",
-                    "Fatir",
-                    "Yasin"
-                ],
-
-                23: [
-                    "Yasin",
-                    "As-Saffat",
-                    "Sad",
-                    "Az-Zumar"
-                ],
-
-                24: [
-                    "Az-Zumar",
-                    "Ghafir",
-                    "Fussilat"
-                ],
-
-                25: [
-                    "Fussilat",
-                    "Asy-Syura",
-                    "Az-Zukhruf",
-                    "Ad-Dukhan",
-                    "Al-Jasiyah"
-                ],
-
-                26: [
-                    "Al-Ahqaf",
-                    "Muhammad",
-                    "Al-Fath",
-                    "Al-Hujurat",
-                    "Qaf",
-                    "Az-Zariyat"
-                ],
-
-                27: [
-                    "Az-Zariyat",
-                    "At-Tur",
-                    "An-Najm",
-                    "Al-Qamar",
-                    "Ar-Rahman",
-                    "Al-Waqi'ah",
-                    "Al-Hadid"
-                ],
-
-                28: [
-                    "Al-Mujadilah",
-                    "Al-Hasyr",
-                    "Al-Mumtahanah",
-                    "As-Saff",
-                    "Al-Jumu'ah",
-                    "Al-Munafiqun",
-                    "At-Taghabun",
-                    "At-Talaq",
-                    "At-Tahrim"
-                ],
-
-                29: [
-                    "Al-Mulk",
-                    "Al-Qalam",
-                    "Al-Haqqah",
-                    "Al-Ma'arij",
-                    "Nuh",
-                    "Al-Jinn",
-                    "Al-Muzzammil",
-                    "Al-Muddassir",
-                    "Al-Qiyamah",
-                    "Al-Insan",
-                    "Al-Mursalat"
-                ],
-
-                30: [
-                    "An-Naba",
-                    "An-Nazi'at",
-                    "Abasa",
-                    "At-Takwir",
-                    "Al-Infitar",
-                    "Al-Mutaffifin",
-                    "Al-Insyiqaq",
-                    "Al-Buruj",
-                    "At-Tariq",
-                    "Al-A'la",
-                    "Al-Ghasyiyah",
-                    "Al-Fajr",
-                    "Al-Balad",
-                    "Asy-Syams",
-                    "Al-Lail",
-                    "Ad-Duha",
-                    "Asy-Syarh",
-                    "At-Tin",
-                    "Al-Alaq",
-                    "Al-Qadr",
-                    "Al-Bayyinah",
-                    "Az-Zalzalah",
-                    "Al-Adiyat",
-                    "Al-Qari'ah",
-                    "At-Takasur",
-                    "Al-Asr",
-                    "Al-Humazah",
-                    "Al-Fil",
-                    "Quraisy",
-                    "Al-Ma'un",
-                    "Al-Kausar",
-                    "Al-Kafirun",
-                    "An-Nasr",
-                    "Al-Lahab",
-                    "Al-Ikhlas",
-                    "Al-Falaq",
-                    "An-Nas"
-                ]
+                1: ["Al-Fatihah", "Al-Baqarah"],
+                2: ["Al-Baqarah"],
+                3: ["Al-Baqarah", "Ali Imran"],
+                4: ["Ali Imran", "An-Nisa"],
+                5: ["An-Nisa"],
+                6: ["An-Nisa'", "Al-Maidah"],
+                7: ["Al-Maidah", "Al-An'am"],
+                8: ["Al-An'am","Al-A'raf"],
+                9: ["Al-A'raf","Al-Anfal"],
+                10: ["Al-Anfal", "At-Taubah"],
+                11: ["At-Taubah","Yunus", "Hud"],
+                12: ["Hud","Yusuf"],
+                13: ["Yusuf", "Ar-Ra'd"],
+                14: ["Al-Hijr","An-Nahl"],
+                15: ["Al-Isra'","Al-Kahfi"],
+                16: ["Al-Kahfi","Maryam", "Ta-Ha"],
+                17: ["Al-Anbiya'","Al-Hajj"],
+                18: ["Al-Mu'minun","An-Nur", "Al-Furqan"],
+                19: ["Al-Furqan","Asy-Syu'ara", "An-Naml"],
+                20: ["An-Naml","Al-Qasas", "Al-Ankabut"],
+                21: ["Al-Ankabut","Ar-Rum", "Luqman", "As-Sajdah", "Al-Ahzab"],
+                22: ["Al-Ahzab","Saba'", "Fatir", "Yasin"],
+                23: ["Yasin","As-Saffat", "Sad", "Az-Zumar"],
+                24: ["Az-Zumar","Ghafir", "Fussilat"],
+                25: ["Fussilat","Asy-Syura", "Az-Zukhruf", "Ad-Dukhan", "Al-Jathiyah"],
+                26: ["Al-Jathiyah","Al-Ahqaf", "Muhammad", "Al-Fath", "Al-Hujurat", "Qaf", "Adz-Dzariyat"],
+                27: ["Adz-Dzariyat","At-Tur", "An-Najm", "Ar-Rahman", "Al-Waqi'ah", "Al-Hadid"],
+                28: ["Al-Mujadilah","Al-Hasyr", "Al-Mumtahanah", "As-Saff", "Al-Jumu'ah", "Al-Munafiqun", "At-Taghabun", "At-Talaq", "At-Tahrim"],
+                29: ["Al-Mulk","Al-Qalam", "Al-Haqqah", "Al-Ma'arij", "Nuh", "Al-Jinn", "Al-Muzzammil", "Al-Muddaththir", "Al-Qiyamah", "Al-Insan", "Al-Mursalat"],
+                30: ["An-Naba", "An-Nazi'at", "At-Takwir", "Al-Infitar","Al-Mutaffifin", "Al-Insyiqaq", "Al-Buruj", "At-Tariq", "Al-A'la", "Al-Ghasyiyah", "Al-Fajr", "Al-Balad", "Asy-Syams", "Al-Lail", "Ad-Duha", "Al-Insyirah", "At-Tin", "Al-'Alaq", "Al-Qadr", "Al-Bayyinah","Az-Zalzalah", "Al-'Adiyat", "Al-Qari'ah", "At-Takathur", "Al-'Asr", "Al-Humazah", "Al-Fil", "Quraisy", "Al-Ma'un", "Al-Kawthar", "Al-Kafirun", "An-Nasr", "Al-Lahab", "Al-Ikhlas", "Al-Falaq", "An-Nas"]
             };
 
             const juzSelect = document.getElementById('juzSetoran');
@@ -1072,7 +942,7 @@ const juzSurat = {
     <div class="bg-white rounded-2xl shadow p-5 h-full">
 
         <h2 class="text-lg font-semibold  mb-4">
-            📋 Riwayat Setoran
+            Riwayat Setoran
         </h2>
 
         <div class="overflow-x-auto">
@@ -1080,11 +950,11 @@ const juzSurat = {
 
                 <thead class="bg-[#075F7C] text-white">
                     <tr>
-                        <th class="px-4 py-2">Juz</th>
                         <th class="px-4 py-2">Tanggal</th>
+                        <th class="px-4 py-2">Juz</th>
                         <th class="px-4 py-2">Surat</th>
                         <th class="px-4 py-2">Ayat</th>
-                        <th class="px-4 py-2">Halaman</th>
+                        <th class="px-4 py-2">Hal</th>
                         <th class="px-4 py-2">Status</th>
                         <th class="px-4 py-2">Nilai</th>
                         <th class="px-4 py-2">Aksi</th>
@@ -1095,14 +965,14 @@ const juzSurat = {
                     @forelse($setorans ?? [] as $setoran)
                         <tr class="border-b hover:bg-gray-50">
 
-                            <!-- JUZ -->
-                            <td class="px-4 py-2">
-                                {{ $setoran->juz }}
-                            </td>
-
                             <!-- TANGGAL -->
                             <td class="px-4 py-2">
                                 {{ $setoran->tanggal }}
+                            </td>
+
+                            <!-- JUZ -->
+                            <td class="px-4 py-2">
+                                {{ $setoran->juz }}
                             </td>
 
                             <!-- SURAT -->
@@ -1131,8 +1001,8 @@ const juzSurat = {
                                         ✔ Terverifikasi
                                     </span>
                                 @else
-                                    <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-xs">
-                                        🔁 Mengulang
+                                    <span class="bg-red-100 text-red-600 px-2 py-1 rounded-full text-xs">
+                                        ❌ Mengulang
                                     </span>
                                 @endif
                             </td>
@@ -1276,13 +1146,13 @@ function openModal(setoran) {
             year: 'numeric'
         });
 
-    // JUZ
-    document.getElementById('dJuz').innerText =
-        'Juz ' + (setoran.juz ?? '-');
-
     // TANGGAL
     document.getElementById('dTanggal').innerText =
         formatTanggal;
+
+    // JUZ
+    document.getElementById('dJuz').innerText =
+        'Juz ' + (setoran.juz ?? '-');
 
     // SURAT
     document.getElementById('dSurat').innerText =
@@ -1300,14 +1170,14 @@ function openModal(setoran) {
     document.getElementById('dHalaman').innerText =
         (setoran.halaman ?? '-') + ' halaman';
 
-    // STATUS (BIAR RAPI)
+    // STATUS 
     let statusText = '';
     if (setoran.status === 'pending') {
         statusText = '⏳ Pending';
     } else if (setoran.status === 'diterima') {
         statusText = '✔ Terverifikasi';
     } else {
-        statusText = '🔁 Mengulang';
+        statusText = '❌ Mengulang';
     }
 
     document.getElementById('dStatus').innerText = statusText;
@@ -1356,6 +1226,20 @@ function openModal(setoran) {
         <!-- CONTENT -->
         <div class="p-5 space-y-4 text-sm">
 
+            <!-- TANGGAL -->
+            <div class="flex justify-between items-start gap-4">
+
+                <span class="text-gray-500">
+                    Tanggal
+                </span>
+
+                <span
+                    id="dTanggal"
+                    class="font-semibold text-right"
+                ></span>
+
+            </div>
+
             <!-- JUZ -->
             <div class="flex justify-between items-start gap-4">
 
@@ -1366,20 +1250,6 @@ function openModal(setoran) {
                 <span
                     id="dJuz"
                     class="font-semibold text-[#075F7C] text-right"
-                ></span>
-
-            </div>
-
-            <!-- TANGGAL -->
-            <div class="flex justify-between items-start gap-4">
-
-                <span class="text-gray-500">
-                    Tanggal
-                </span>
-
-                <span
-                    id="dTanggal"
-                    class="font-medium text-right"
                 ></span>
 
             </div>
@@ -1395,7 +1265,6 @@ function openModal(setoran) {
                     id="dSurat"
                     class="font-medium text-right"
                 ></span>
-
             </div>
 
             <!-- AYAT -->
@@ -1409,7 +1278,6 @@ function openModal(setoran) {
                     id="dAyat"
                     class="font-medium text-right"
                 ></span>
-
             </div>
 
             <!-- HALAMAN -->
@@ -1423,7 +1291,6 @@ function openModal(setoran) {
                     id="dHalaman"
                     class="font-semibold text-[#075F7C] text-right"
                 ></span>
-
             </div>
 
             <!-- STATUS -->
@@ -1437,7 +1304,6 @@ function openModal(setoran) {
                     id="dStatus"
                     class="font-semibold text-right"
                 ></span>
-
             </div>
 
             <!-- NILAI -->
@@ -1451,12 +1317,10 @@ function openModal(setoran) {
                     id="dNilai"
                     class="font-semibold text-right"
                 ></span>
-
             </div>
 
             <!-- CATATAN -->
             <div>
-
                 <p class="text-gray-500 mb-2">
                     Catatan Penyimak
                 </p>
@@ -1467,13 +1331,9 @@ function openModal(setoran) {
                            text-gray-700 text-sm leading-relaxed
                            max-h-32 overflow-y-auto"
                 ></div>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 <script>

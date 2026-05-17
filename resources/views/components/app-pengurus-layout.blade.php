@@ -35,12 +35,12 @@
                 </a>
 
                 <div>
-                    <h2 class="font-bold text-2xl text-[#075F7C] leading-tight">
+                    <h2 class="font-bold text-2xl text-black leading-tight">
                         Mutqeen
                     </h2>
 
-                    <p class="text-sm text-[#075F7C] leading-tight">
-                        Dashboard Pengurus
+                    <p class="text-sm font-semibold text-black leading-tight">
+                        Pusat Tahfidz Al-Qur'an
                     </p>
                 </div>
 
@@ -50,8 +50,11 @@
             <nav class="space-y-3">
 
                 {{-- DASHBOARD --}}
-                <a href="#"
-                    class="flex items-center gap-4 px-4 py-3 rounded-2xl bg-[#075F7C] text-white font-medium">
+                <a href="{{ route('pengurus.dashboard') }}"
+                    class="flex items-center gap-4 px-4 py-3 rounded-2xl transition font-medium
+                    {{ request()->routeIs('pengurus.dashboard')
+                        ? 'bg-[#075F7C] text-white'
+                        : 'text-[#075F7C] hover:bg-[#075F7C] hover:text-white' }}">
 
                     <i class="fi fi-rr-apps text-lg"></i>
 
@@ -59,37 +62,48 @@
                 </a>
 
                 {{-- HALAQAH --}}
-                <a href="#"
-                    class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-[#075F7C] hover:text-white text-[#075F7C] transition font-medium">
+                <a href="{{ route('pengurus.halaqah') }}"
+                    class="flex items-center gap-4 px-4 py-3 rounded-2xl transition font-medium
+                    {{ request()->routeIs('pengurus.halaqah')
+                        ? 'bg-[#075F7C] text-white'
+                        : 'text-[#075F7C] hover:bg-[#075F7C] hover:text-white' }}">
 
-                    <i class="fi fi-rr-user text-lg"></i>
+                    <i class="fi fi-rr-book text-lg"></i>
 
                     Halaqah
                 </a>
-                
 
                 {{-- SANTRI --}}
-                <a href="#"
-                    class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-[#075F7C] hover:text-white text-[#075F7C] transition font-medium">
+                <a href="{{ route('pengurus.data-santri') }}"
+                    class="flex items-center gap-4 px-4 py-3 rounded-2xl transition font-medium
+                    {{ request()->routeIs('pengurus.data-santri')
+                        ? 'bg-[#075F7C] text-white'
+                        : 'text-[#075F7C] hover:bg-[#075F7C] hover:text-white' }}">
 
-                    <i class="fi fi-rr-user text-lg"></i>
+                    <i class="fi fi-rr-users text-lg"></i>
 
                     Data Santri
                 </a>
 
                 {{-- PENYIMAK --}}
-                <a href="#"
-                    class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-[#075F7C] hover:text-white text-[#075F7C] transition font-medium">
+                <a href="{{ route('pengurus.data-penyimak') }}"
+                    class="flex items-center gap-4 px-4 py-3 rounded-2xl transition font-medium
+                    {{ request()->routeIs('pengurus.data-penyimak')
+                        ? 'bg-[#075F7C] text-white'
+                        : 'text-[#075F7C] hover:bg-[#075F7C] hover:text-white' }}">
 
-                    <i class="fi fi-rr-headphones text-lg"></i>
+
+                    <i class="fi fi-rr-user text-lg"></i>
 
                     Data Penyimak
                 </a>
 
                 {{-- LAPORAN --}}
-                <a href="#"
-                    class="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-[#075F7C] hover:text-white text-[#075F7C] transition font-medium">
-
+                <a href="{{ route('pengurus.laporan-tahfidz') }}"
+                    class="flex items-center gap-4 px-4 py-3 rounded-2xl transition font-medium
+                    {{ request()->routeIs('pengurus.laporan-tahfidz')
+                        ? 'bg-[#075F7C] text-white'
+                        : 'text-[#075F7C] hover:bg-[#075F7C] hover:text-white' }}">
                     <i class="fi fi-rr-chart-line-up text-lg"></i>
 
                     Laporan Tahfidz
@@ -132,7 +146,7 @@
                         <p class="text-lg font-medium text-gray-800">
                             Assalamualaikum,
                             <span class="font-bold">
-                                {{ auth()->user()->name }}
+                                {{ Auth::check() ? Auth::user()->name : '' }}
                             </span> 
                         </p>
 
@@ -156,18 +170,18 @@
                                 >
 
                                     <img
-                                        src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}&background=075F7C&color=fff"
+                                        src="https://ui-avatars.com/api/?name={{ Auth::check() ? Auth::user()->name : 'User' }}background=075F7C&color=fff"
                                         class="w-10 h-10 rounded-full"
                                     >
 
                                     <div class="text-start hidden md:block">
 
                                         <p class="font-semibold text-sm text-gray-800 m-0">
-                                            {{ Auth::user()->name }}
+                                            {{ Auth::check() ? Auth::user()->name : '' }}
                                         </p>
 
                                         <p class="capitalize text-xs text-gray-500 m-0">
-                                            {{ Auth::user()->role }}
+                                            {{ Auth::check() ? Auth::user()->role : '' }}
                                         </p>
 
                                     </div>
@@ -180,9 +194,11 @@
 
                             <x-slot name="content">
 
+                                @auth
                                 <x-dropdown-link :href="route('dashboard.' . Auth::user()->role)">
                                     Dashboard
                                 </x-dropdown-link>
+                                @endauth
 
                                 <x-dropdown-link :href="route('profile.index')">
                                     Profile

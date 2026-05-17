@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Santri;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Target;
 use App\Models\Setoran;
 use App\Models\MurojaahLog;
@@ -13,7 +14,8 @@ class SantriDashboardController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
+        $user = User::with(['halaqah.penyimak.user'])
+            ->find(auth()->id());
 
         if (!$user) {
             abort(403);
@@ -44,7 +46,6 @@ class SantriDashboardController extends Controller
 
         $totalSetoran = $setorans->count();
 
-        // 🔥 FIX: TAMBAHIN INI (BIAR ERROR HILANG)
         $progress = 0;
 
         // =====================
@@ -79,19 +80,104 @@ class SantriDashboardController extends Controller
 
         $progressMurojaah = min(100, round(($totalMurojaah / 7) * 100, 0));
 
+        // =====================
+        // PENCAPAIAN MINGGU INI 
+        // =====================
+
+        // RANGE MINGGU
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek   = Carbon::now()->endOfWeek();
+
+        // JUMLAH SETORAN MINGGU INI
+        $setoranMingguIni = Setoran::where('user_id', $userId)
+            ->whereBetween('tanggal', [$startOfWeek, $endOfWeek])
+            ->count();
+
+        //  JUZ UNIK MINGGU INI
+        $juzMingguIni = Setoran::where('user_id', $userId)
+            ->whereBetween('tanggal', [$startOfWeek, $endOfWeek])
+            ->distinct('juz')
+            ->count('juz');
+
+        //  TOTAL HALAMAN MINGGU INI
+        $halamanMingguIni = Setoran::where('user_id', $userId)
+            ->whereBetween('tanggal', [$startOfWeek, $endOfWeek])
+            ->sum('halaman');
+
+        //  STREAK SETORAN (HARI BERUNTUN)
+        $dates = Setoran::where('user_id', $userId)
+            ->orderBy('tanggal', 'desc')
+            ->pluck('tanggal')
+            ->map(fn($d) => Carbon::parse($d)->format('Y-m-d'))
+            ->unique()
+            ->values();
+
+        $streak = 0;
+        $currentDate = Carbon::today();
+
+        foreach ($dates as $date) {
+            if ($currentDate->format('Y-m-d') == $date) {
+                $streak++;
+                $currentDate->subDay();
+            } else {
+                break;
+            }
+        }
+
+        // =====================
+        // STREAK SETORAN (GRACE 3 HARI)
+        // =====================
+        $dates = Setoran::where('user_id', $userId)
+            ->orderBy('tanggal', 'desc')
+            ->pluck('tanggal')
+            ->map(fn($d) => Carbon::parse($d)->format('Y-m-d'))
+            ->unique()
+            ->values();
+
+        $streak = 0;
+
+        if ($dates->isNotEmpty()) {
+
+            $today = Carbon::today();
+            $lastSetoranDate = Carbon::parse($dates->first());
+
+            $gap = $today->diffInDays($lastSetoranDate);
+            if ($gap > 3) {
+                $streak = 0;
+            } else {
+
+                $currentDate = $lastSetoranDate;
+
+                foreach ($dates as $date) {
+
+                    $dateCarbon = Carbon::parse($date);
+
+                    if ($currentDate->format('Y-m-d') == $dateCarbon->format('Y-m-d')) {
+                        $streak++;
+                        $currentDate->subDay();
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+
         return view('santri.dashboard', compact(
+            'user',
             'targets',
             'progressTarget',
-
             'setorans',
             'setoranTerakhir',
             'totalSetoran',
             'progress',
-
             'murojaahTerakhir',
             'totalMurojaah',
             'progressMurojaah',
-            'murojaahHariIni'
+            'murojaahHariIni',
+            'setoranMingguIni',
+            'juzMingguIni',
+            'halamanMingguIni',
+            'streak',
         ));
     }
 

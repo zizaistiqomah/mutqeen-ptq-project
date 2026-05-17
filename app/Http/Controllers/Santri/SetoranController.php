@@ -22,8 +22,6 @@ class SetoranController extends Controller
             'ayat_mulai' => 'required',
             'surat_selesai' => 'required',
             'ayat_selesai' => 'required',
-
-            // TAMBAHAN
             'halaman' => 'required|integer|min:1|max:20',
         ]);
 

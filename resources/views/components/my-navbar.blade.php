@@ -5,7 +5,7 @@
         <h1 class="logo me-5"><a href={{ route('home') }}>Mutqeen<br>Pusat Tahfidz Al-Qur'an</a></h1>
 
         <nav id="navbar" class="navbar">
-            <div class="mx-5">
+            <div class="mx-6">
                 <ul>
                     <li><a class="nav-link scrollto {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"
                             href={{ route('home') }}>Beranda</a></li>
@@ -50,8 +50,6 @@
 
                         </div>
                     </li>
-                    <li><a class="nav-link scrollto {{ Route::currentRouteName() == 'program.tahfidz' ? 'active' : '' }}"
-                            href="#tahfidz">Program Tahfidz</a></li>
 
                     <li><a class="nav-link scrollto {{ Route::currentRouteName() == 'publikasi' ? 'active' : '' }}"
                             href={{route('semua-program')}}>Semua Program</a></li>

@@ -15,7 +15,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'halaqah_id',
     ];
 
 
@@ -47,10 +48,26 @@ class User extends Authenticatable
         return $this->hasOne(Penyimak::class);
     }
 
-
     public function setorans()
     {
         return $this->hasMany(Setoran::class);
+    }
+
+    public function halaqah()
+    {
+        return $this->belongsTo(Halaqah::class, 'halaqah_id');
+    }
+
+    public function getTotalHalamanAttribute()
+    {
+        return $this->setorans()
+            ->where('status', 'diterima')
+            ->count();
+    }
+
+    public function targets()
+    {
+        return $this->hasMany(Target::class, 'user_id');
     }
 
 

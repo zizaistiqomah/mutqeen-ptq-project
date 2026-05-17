@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Penyimak;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Halaqah;
 use App\Models\Penyimak;
 use App\Models\Setoran;
@@ -31,18 +32,17 @@ class DashboardController extends Controller
         if ($penyimak) {
 
             // ambil halaqah milik penyimak
-            $halaqah = Halaqah::where('penyimak_id', $penyimak->id)->first();
+            $halaqah = Halaqah::with('santris')
+                ->where('penyimak_id', $penyimak->id)
+                ->first();
 
             // cek apakah halaqah ada
             if ($halaqah) {
 
-                $anggotaHalaqah = Santri::with(['user', 'setorans'])
-                    ->where('halaqah_id', $halaqah->id)
-                    ->get()
+                $anggotaHalaqah = $halaqah->santris
                     ->map(function ($santri) {
 
-                        // total setoran semester ini
-                        $santri->total_setoran = $santri->setorans
+                        $santri->total_setoran = Setoran::where('user_id', $santri->id)
                             ->whereIn('status', ['diterima', 'revisi'])
                             ->whereBetween('updated_at', [
                                 now()->startOfYear(),
@@ -55,13 +55,11 @@ class DashboardController extends Controller
                     ->sortByDesc('total_setoran');
 
                 // ambil semua user_id santri di halaqah
-                $santriIds = Santri::where('halaqah_id', $halaqah->id)
-                    ->pluck('user_id');
+                $santriIds = $halaqah->santris->pluck('id');
 
                 // hitung antrean hari ini
                 $antrianHariIni = Setoran::whereIn('user_id', $santriIds)
                     ->where('status', 'pending')
-                    ->whereDate('tanggal', today())
                     ->count();
 
                 // total setoran terverifikasi
@@ -101,21 +99,6 @@ class DashboardController extends Controller
                     ])
                     ->count();
                 
-                // total minggu lalu
-                $totalMingguLalu = Setoran::whereIn('user_id', $santriIds)
-                    ->whereIn('status', ['diterima', 'revisi'])
-                    ->whereBetween('updated_at', [
-                        now()->subWeek()->startOfWeek(),
-                        now()->subWeek()->endOfWeek()
-                    ])
-                    ->count();
-                
-                if ($totalMingguLalu > 0) {
-
-                    $persentaseMingguan = round(
-                        (($totalSetoranMingguIni - $totalMingguLalu) / $totalMingguLalu) * 100
-                    );
-                }
             }
         }
 

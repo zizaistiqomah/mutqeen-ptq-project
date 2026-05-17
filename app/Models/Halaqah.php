@@ -19,6 +19,7 @@ class Halaqah extends Model
 
     public function santris()
     {
-        return $this->hasMany(Santri::class);
+        return $this->hasMany(User::class, 'halaqah_id')
+                    ->where('role', 'santri');
     }
 }

@@ -16,6 +16,11 @@ use App\Http\Controllers\Santri\SetoranController;
 use App\Http\Controllers\Penyimak\DashboardController;
 use App\Http\Controllers\Pengurus\DashboardPengurusController;
 
+use App\Http\Controllers\Pengurus\DataSantriController;
+use App\Http\Controllers\Pengurus\HalaqahController;
+use App\Http\Controllers\Pengurus\DataPenyimakController;
+use App\Http\Controllers\Pengurus\LaporanTahfidzController;
+
 /*
 |--------------------------------------------------------------------------
 | LANDING
@@ -121,15 +126,16 @@ Route::middleware(['auth'])->group(function () {
     )->name('penyimak.verifikasi');
 });
 
+
 /*
 |--------------------------------------------------------------------------
-| SANTRI FEATURE
+| DASHBOARD SANTRI
 |--------------------------------------------------------------------------
 */
 
 Route::middleware(['auth'])->prefix('santri')->group(function () {
 
-    // 🔥 DASHBOARD UTAMA (INI YANG DIPAKAI)
+    // DASHBOARD UTAMA 
     Route::get('/dashboard', [SantriDashboardController::class, 'index']);
 
     // TARGET
@@ -150,3 +156,41 @@ Route::middleware(['auth'])->prefix('santri')->group(function () {
 Route::post('/santri/murojaah', [SantriDashboardController::class, 'storeMurojaah']);
 Route::post('/santri/murojaah/toggle', [SantriDashboardController::class, 'toggleMurojaah']);
 });
+
+
+
+/*
+|--------------------------------------------------------------------------
+| DASHBOARD PENGURUS
+|--------------------------------------------------------------------------
+*/
+Route::get('/pengurus/dashboard', [DashboardPengurusController::class, 'index'])
+    ->name('pengurus.dashboard');
+
+Route::get('/pengurus/data-santri', [DataSantriController::class, 'index'])
+    ->name('pengurus.data-santri');
+Route::put('/pengurus/santri/{id}/update-halaqah',
+    [App\Http\Controllers\Pengurus\DataSantriController::class, 'updateHalaqah']
+)->name('pengurus.santri.update-halaqah');
+
+Route::put('/pengurus/santri/{id}', [DataSantriController::class, 'update']);
+Route::put('/pengurus/santri/{id}/update-halaqah', [DataSantriController::class, 'updateHalaqah']);
+Route::delete('/pengurus/santri/{id}', [DataSantriController::class, 'destroy']);
+
+Route::get('/pengurus/halaqah', [HalaqahController::class, 'index'])
+    ->name('pengurus.halaqah');
+Route::post('/pengurus/halaqah', [HalaqahController::class, 'store']);
+Route::put('/pengurus/halaqah/{id}', [HalaqahController::class, 'update']);
+Route::delete('/pengurus/halaqah/{id}', [HalaqahController::class, 'destroy']);
+
+Route::get('/pengurus/data-penyimak', [DataPenyimakController::class, 'index'])
+    ->name('pengurus.data-penyimak');
+Route::delete('/pengurus/penyimak/{id}', [DataPenyimakController::class, 'destroy']);
+
+Route::get('/pengurus/laporan-tahfidz', 
+    [App\Http\Controllers\Pengurus\LaporanTahfidzController::class, 'index']
+)->name('pengurus.laporan-tahfidz');
+
+Route::get('/pengurus/laporan-tahfidz/export',
+    [LaporanTahfidzController::class, 'export']
+)->name('laporan-tahfidz.export');

@@ -32,8 +32,8 @@
       <div class="mx-5">
         <ul>
           <li><a class="nav-link scrollto active" href="/">Beranda</a></li>
-          <li><a class="nav-link scrollto" href="/program-tahfidz">Program Tahfidz</a></li>
-          <li><a class="nav-link scrollto" href="/publikasi">Publikasi</a></li>
+          <li><a class="nav-link scrollto" href="/departemen-tahfidz">Departemen Tahfidz</a></li>
+          <li><a class="nav-link scrollto" href="/semua-programi">Semua Program</a></li>
           <li><a class="nav-link scrollto" href="/pengumuman">Pengumuman</a></li>
         </ul>
       </div>
@@ -97,28 +97,52 @@
       </div>
 
       <div class="row mb-3">
-        <div class="col">
+      <!-- FAKULTAS -->
+      <div class="col">
           <label class="form-label">Fakultas</label>
-          <select name="fakultas" class="form-select" required>
-            <option disabled selected>Pilih Fakultas</option>
-            <option>FILKOM</option>
-            <option>FT</option>
-            <option>FEB</option>
-            <option>FIA</option>
-            <option>FP</option>
-          </select>
-        </div>
+          <select
+              name="fakultas"
+              id="fakultas"
+              class="form-select"
+              required
+          >
+              <option value="" selected disabled>
+                  Pilih Fakultas
+              </option>
 
-        <div class="col">
-          <label class="form-label">Jurusan</label>
-          <select name="jurusan" class="form-select" required>
-            <option disabled selected>Pilih Jurusan</option>
-            <option>Teknik Informatika</option>
-            <option>Sistem Informasi</option>
-            <option>Manajemen</option>
-            <option>Akuntansi</option>
+              <option value="FH">Fakultas Hukum (FH)</option>
+              <option value="FEB">Fakultas Ekonomi dan Bisnis (FEB)</option>
+              <option value="FIA">Fakultas Ilmu Administrasi (FIA)</option>
+              <option value="FP">Fakultas Pertanian (FP)</option>
+              <option value="FAPET">Fakultas Peternakan (FAPET)</option>
+              <option value="FT">Fakultas Teknik (FT)</option>
+              <option value="FPIK">Fakultas Perikanan dan Ilmu Kelautan(FPIK)</option>
+              <option value="FK">Fakultas Kedokteran (FK)</option>
+              <option value="FTP">Fakultas Teknologi Pertanian (FTP)</option>
+              <option value="FISIP">Fakultas Ilmu Sosial dan Ilmu Politik (FISIP)</option>
+              <option value="FIB">Fakultas Ilmu Budaya (FIB)</option>
+              <option value="FMIPA">Fakultas Matematika dan Ilmu Pengetahuan Alam (FMIPA)</option>
+              <option value="FKH">Fakultas Kedokteran Hewan (FKH)</option>
+              <option value="FIKES">Fakultas Ilmu Kesehatan (FIKES)</option>
+              <option value="FILKOM">Fakultas Ilmu Komputer (FILKOM)</option>
+              <option value="FV">Fakultas Vokasi (FV)</option>
           </select>
-        </div>
+      </div>
+
+
+      <!-- JURUSAN -->
+      <div class="col">
+          <label class="form-label">Jurusan</label>
+          <select
+              name="jurusan"
+              id="jurusan"
+              class="form-select"
+              required
+          >
+              <option value="" selected disabled>
+                  Pilih Fakultas terlebih dahulu
+              </option>
+          </select>
       </div>
 
       <div class="mb-3">
@@ -150,5 +174,58 @@
 </section>
 
 <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<script>
+
+const jurusanByFakultas = {
+    "FH": ["Ilmu Hukum",],
+    "FEB": ["Eknonomi Islam", "Ekonomi Pembangunan", "Ekonomi Keuangan dan Perbankan", "Akuntansi", "Manajemen", "Kewirausahaan"],
+    "FIA": ["Administrasi Publik", "Administrasi Bisnis", "Administrasi Perpajakan", "Administrasi Pendidikan", "Ilmu Perpustakaan"],
+    "FP": ["Agroteknologi", "Agribisnis", "Kehutanan"],
+    "FAPET": ["Peternakan",],
+    "FT": ["Teknik Sipil", "Teknik Mesin", "Teknik Elektro", "Teknik Pengairan", "Teknik Industri", "Teknik Kimia", "Perencanaan Wilayah dan Kota"],
+    "FPIK": ["Manajemen Sumberdaya Perairan", "Akuakultur", "Teknologi Hasil Perikanan", "Pemanfaatan Sumberdaya Perikanan", "Sosial Ekonomi Perikanan"],
+    "FK": ["Pendidikan Dokter", "Kedokteran"],
+    "FTP": ["Teknik Pertanian", "Teknologi Industri pertanian", "Teknologi Bioproses", "Ilmu dan Teknologi Pangan"],
+    "FISIP": ["Ilmu Komunikasi", "Sosiologi", "Hubungan Internasional", "Psikologi", "Ilmu Pemerintahan", "Ilmu Politik"],
+    "FIB": ["Pendidikan Bahasa Inggris", "Sastra Inggris", "Sastra Jepang", "Sastra Prancis", "Seni Rupa Murni", "Pendidikan Seni Pertunjukan"],
+    "FMIPA": ["Fisika", "Kimia", "Matematika", "Biologi", "Statistika", "Instrumentasi"],
+    "FKH": ["Pendidikan Dokter Hewan", "Kedokteran Hewan"],
+    "FIKES": ["Keperawatan", "Kebidanan", "Gizi"],
+    "FKG": ["Kedokteran Gigi",],
+    "FILKOM": ["Teknik Informatikan", "Sistem Informasi", "Teknologi Informasi", "Pendidikan Teknologi Informasi", "Teknik Komputer"],
+    "FV": ["D3 Teknologi Informasi", "D3 Administrasi Bisnis", "D3 Keuangan Perbankan", "D4 Manajemen Perhotelan", "D4 Desain Grafis"],
+};
+
+const fakultas = document.getElementById('fakultas');
+const jurusan = document.getElementById('jurusan');
+
+fakultas.addEventListener('change', function () {
+
+    let selected = this.value;
+
+    // reset dropdown jurusan
+    jurusan.innerHTML =
+        '<option value="" selected disabled>Pilih Jurusan</option>';
+
+    // isi jurusan sesuai fakultas
+    if (jurusanByFakultas[selected]) {
+
+        jurusanByFakultas[selected].forEach(function(item){
+
+            let option = document.createElement('option');
+
+            // ini value yang dikirim ke database
+            option.value = item;
+
+            // ini text yang tampil ke user
+            option.textContent = item;
+
+            jurusan.appendChild(option);
+        });
+    }
+});
+
+</script>
 </body>
 </html>
