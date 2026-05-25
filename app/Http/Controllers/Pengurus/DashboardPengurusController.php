@@ -107,7 +107,7 @@ class DashboardPengurusController extends Controller
 
             $totalHalaman = $santri->setorans
                 ->where('status', 'diterima')
-                ->sum('halaman');
+                ->sum('halaman_diterima');
 
             $targetHalaman = $totalTarget * 20;
 
@@ -138,7 +138,8 @@ class DashboardPengurusController extends Controller
             'weeklyData',
             'bulan',
             'topSantri',
-            'santriProgress'
+            'santriProgress',
+            'totalHalaman'
         ));
     }
 }

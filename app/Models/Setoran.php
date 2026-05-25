@@ -25,6 +25,7 @@ class Setoran extends Model
         'surah',
         'jumlah_halaman',
         'halaman',
+        'halaman_diterima',
     ];
 
 

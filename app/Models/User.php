@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     public function setorans()
     {
-        return $this->hasMany(Setoran::class);
+        return $this->hasMany(Setoran::class, 'user_id');
     }
 
     public function halaqah()

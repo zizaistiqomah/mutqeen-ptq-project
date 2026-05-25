@@ -185,10 +185,29 @@ function toggleForm() {
     let tipe = document.getElementById('tipe').value;
     let internal = document.getElementById('internalFields');
 
+    let nim = document.querySelector('[name="nim"]');
+    let fakultas = document.getElementById('fakultas');
+    let jurusan = document.getElementById('jurusan');
+
     if (tipe === 'pengurus') {
         internal.style.display = 'block';
+
+        nim.required = true;
+        fakultas.required = true;
+        jurusan.required = true;
+
     } else {
         internal.style.display = 'none';
+
+        nim.required = false;
+        fakultas.required = false;
+        jurusan.required = false;
+
+        // reset biar bersih
+        nim.value = '';
+        fakultas.selectedIndex = 0;
+        jurusan.innerHTML =
+            '<option value="" selected disabled>Pilih Fakultas terlebih dahulu</option>';
     }
 }
 </script>

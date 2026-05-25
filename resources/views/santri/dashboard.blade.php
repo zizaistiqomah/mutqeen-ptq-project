@@ -1170,6 +1170,10 @@ function openModal(setoran) {
     document.getElementById('dHalaman').innerText =
         (setoran.halaman ?? '-') + ' halaman';
 
+    // HALAMAN TERVERIFIKASI
+    document.getElementById('dHalamanTerverifikasi').innerText =
+        (setoran.halaman_diterima ?? 0) + ' halaman';
+
     // STATUS 
     let statusText = '';
     if (setoran.status === 'pending') {
@@ -1291,6 +1295,20 @@ function openModal(setoran) {
                     id="dHalaman"
                     class="font-semibold text-[#075F7C] text-right"
                 ></span>
+            </div>
+
+            <!-- HALAMAN TERVERIFIKASI -->
+            <div class="flex justify-between items-start gap-4">
+
+                <span class="text-gray-500">
+                    Total Halaman Terverifikasi
+                </span>
+
+                <span
+                    id="dHalamanTerverifikasi"
+                    class="font-semibold text-green-600 text-right"
+                ></span>
+
             </div>
 
             <!-- STATUS -->

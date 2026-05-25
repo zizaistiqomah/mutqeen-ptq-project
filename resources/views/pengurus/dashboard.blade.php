@@ -362,7 +362,7 @@
 
                     <!-- HAFALAN -->
                     <td class="py-3 px-4 text-left">
-                        {{ $santri->setorans->sum('halaman') }} halaman
+                        {{ $santri->setorans->sum('halaman_diterima') }} halaman
                     </td>
 
                     <!-- CAPAIAN -->

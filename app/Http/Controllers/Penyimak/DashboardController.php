@@ -121,6 +121,7 @@ class DashboardController extends Controller
             'status' => 'required',
             'nilai' => 'nullable',
             'catatan' => 'nullable',
+            'halaman_diterima' => 'nullable|integer|min:1|max:20',
         ]);
 
         $setoran = Setoran::findOrFail($id);
@@ -128,12 +129,24 @@ class DashboardController extends Controller
         // ambil penyimak login
         $penyimak = Penyimak::where('user_id', auth()->id())->first();
 
+        /*
+        |--------------------------------------------------------------------------
+        | jika status bukan diterima, halaman_diterima null
+        |--------------------------------------------------------------------------
+        */
+        $halamanDiterima = null;
+
+        if ($request->status === 'diterima') {
+            $halamanDiterima = $request->halaman_diterima;
+        }
+
         // update verifikasi
         $setoran->update([
             'status' => $request->status,
             'nilai' => $request->nilai,
             'catatan' => $request->catatan,
             'penyimak_id' => $penyimak->id,
+            'halaman_diterima' => $halamanDiterima,
         ]);
 
         /*
@@ -142,19 +155,17 @@ class DashboardController extends Controller
         |--------------------------------------------------------------------------
         */
 
-        // hanya jika diterima
         if ($request->status === 'diterima') {
 
             $target = \App\Models\Target::where('user_id', $setoran->user_id)
                 ->where('target_juz', $setoran->juz)
                 ->first();
 
-            // jika target ditemukan
             if ($target) {
 
-                $target->progress_halaman += $setoran->halaman;
+                $target->progress_halaman += $halamanDiterima;
 
-                // max 20 halaman per juz
+                // maksimal 20 halaman per juz
                 if ($target->progress_halaman > 20) {
                     $target->progress_halaman = 20;
                 }

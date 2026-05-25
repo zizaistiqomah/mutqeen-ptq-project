@@ -46,7 +46,9 @@ class SantriDashboardController extends Controller
 
         $totalSetoran = $setorans->count();
 
-        $progress = 0;
+        $progress = Setoran::where('user_id', $userId)
+            ->where('status', 'diterima')
+            ->sum('halaman_diterima');
 
         // =====================
         // MUROJAAH
@@ -101,8 +103,9 @@ class SantriDashboardController extends Controller
 
         //  TOTAL HALAMAN MINGGU INI
         $halamanMingguIni = Setoran::where('user_id', $userId)
+            ->where('status', 'diterima')
             ->whereBetween('tanggal', [$startOfWeek, $endOfWeek])
-            ->sum('halaman');
+            ->sum('halaman_diterima');
 
         //  STREAK SETORAN (HARI BERUNTUN)
         $dates = Setoran::where('user_id', $userId)

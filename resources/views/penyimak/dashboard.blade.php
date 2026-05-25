@@ -236,6 +236,7 @@
                     <th class="pb-4">Santri</th>
                     <th class="pb-4">Tanggal</th>
                     <th class="pb-4">Juz</th>
+                    <th class="pb-4">Halaman</th>
                     <th class="pb-4">Rentang Ayat</th>
                     <th class="pb-4">Status</th>
                     <th class="pb-4 text-center">Aksi</th>
@@ -275,6 +276,11 @@
                         {{-- JUZ --}}
                         <td class="py-5 text-gray-600">
                             Juz {{ $setoran->juz }}
+                        </td>
+
+                        {{-- HALAMAN --}}
+                        <td class="py-5 text-gray-600 font-medium">
+                            {{ $setoran->halaman }} halaman
                         </td>
 
                         {{-- AYAT --}}
@@ -382,6 +388,19 @@
                     <option value="revisi">Perlu Revisi</option>
                 </select>
 
+            </div>
+
+            {{-- TOTAL HALAMAN DITERIMA --}}
+            <div class="mb-3">
+                <label class="form-label">Jumlah Halaman Diterima</label>
+                <input
+                    type="number"
+                    name="halaman_diterima"
+                    class="form-control"
+                    min="1"
+                    required
+                    placeholder="Masukkan jumlah halaman"
+                >
             </div>
 
             {{-- NILAI --}}
